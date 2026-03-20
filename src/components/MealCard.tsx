@@ -16,16 +16,16 @@ export default function MealCard({ meal, onLog, onSwap }: MealCardProps) {
 
   return (
     <div
-      className={`rounded-xl border bg-white p-4 transition-opacity ${
-        meal.logged ? 'opacity-60' : ''
+      className={`neu-flat p-4 transition-opacity ${
+        meal.logged ? 'neu-pressed opacity-60' : ''
       }`}
     >
       <div className="flex items-start justify-between mb-2">
         <div>
-          <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+          <span className="text-xs font-semibold uppercase tracking-wide text-gray-400">
             {meal.label}
           </span>
-          <h3 className="text-base font-semibold text-slate-800 flex items-center gap-2">
+          <h3 className="text-base font-semibold text-gray-700 flex items-center gap-2">
             {meal.food.name}
             {meal.logged && (
               <svg
@@ -45,14 +45,14 @@ export default function MealCard({ meal, onLog, onSwap }: MealCardProps) {
         </div>
       </div>
 
-      <div className="flex gap-3 text-xs text-slate-500 mb-3">
-        <span className="font-medium text-slate-700">{cals} cal</span>
+      <div className="flex gap-3 text-xs text-gray-500 mb-3">
+        <span className="font-medium text-gray-700">{cals} cal</span>
         <span>P: {protein}g</span>
         <span>C: {carbs}g</span>
         <span>F: {fat}g</span>
       </div>
 
-      <p className="text-xs text-slate-400 mb-3">
+      <p className="text-xs text-gray-400 mb-3">
         {meal.servings} x {meal.food.serving}
       </p>
 
@@ -60,10 +60,10 @@ export default function MealCard({ meal, onLog, onSwap }: MealCardProps) {
         <button
           onClick={onLog}
           disabled={meal.logged}
-          className={`flex-1 rounded-lg px-3 py-2 text-sm font-medium transition-colors ${
+          className={`flex-1 text-sm font-medium transition-all ${
             meal.logged
-              ? 'bg-green-100 text-green-600 cursor-default'
-              : 'bg-green-500 text-white hover:bg-green-600 active:bg-green-700'
+              ? 'neu-pressed text-green-600 cursor-default px-3 py-2 rounded-xl'
+              : 'neu-btn-accent'
           }`}
         >
           {meal.logged ? 'Logged' : 'Log'}
@@ -71,7 +71,7 @@ export default function MealCard({ meal, onLog, onSwap }: MealCardProps) {
         <button
           onClick={onSwap}
           disabled={meal.logged}
-          className="flex-1 rounded-lg bg-slate-100 px-3 py-2 text-sm font-medium text-slate-600 hover:bg-slate-200 active:bg-slate-300 transition-colors disabled:opacity-50 disabled:cursor-default"
+          className="flex-1 neu-btn text-sm disabled:opacity-50 disabled:cursor-default"
         >
           Swap
         </button>

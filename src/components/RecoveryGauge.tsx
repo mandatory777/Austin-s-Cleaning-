@@ -30,14 +30,14 @@ function BreakdownBar({ label, value, max = 100 }: { label: string; value: numbe
 
   return (
     <div className="flex items-center gap-2">
-      <span className="text-xs text-slate-500 w-16 shrink-0">{label}</span>
-      <div className="flex-1 h-2 bg-slate-100 rounded-full overflow-hidden">
+      <span className="text-xs text-gray-500 w-16 shrink-0">{label}</span>
+      <div className="flex-1 h-2 neu-pressed !rounded-full overflow-hidden !p-0">
         <div
           className={`h-full rounded-full transition-all duration-500 ${barColor}`}
           style={{ width: `${pct}%` }}
         />
       </div>
-      <span className="text-xs text-slate-400 w-8 text-right">{value}</span>
+      <span className="text-xs text-gray-400 w-8 text-right">{value}</span>
     </div>
   );
 }
@@ -52,16 +52,19 @@ export default function RecoveryGauge({ score }: RecoveryGaugeProps) {
   const color = getScoreColor(score.total);
 
   return (
-    <div className="rounded-xl border bg-white p-6">
+    <div className="neu-flat p-6">
       <div className="flex flex-col items-center mb-6">
-        <div className="relative" style={{ width: size, height: size }}>
+        <div
+          className="neu-circle relative flex items-center justify-center"
+          style={{ width: size + 24, height: size + 24 }}
+        >
           <svg width={size} height={size} className="-rotate-90">
             <circle
               cx={size / 2}
               cy={size / 2}
               r={radius}
               fill="none"
-              stroke="#f1f5f9"
+              stroke="#d1d5db"
               strokeWidth={strokeWidth}
             />
             <circle
@@ -81,11 +84,11 @@ export default function RecoveryGauge({ score }: RecoveryGaugeProps) {
             <span className={`text-4xl font-bold ${getScoreColorClass(score.total)}`}>
               {score.total}
             </span>
-            <span className="text-xs text-slate-400">/ 100</span>
+            <span className="text-xs text-gray-400">/ 100</span>
           </div>
         </div>
 
-        <p className="mt-4 text-sm text-slate-600 text-center max-w-xs">
+        <p className="mt-4 text-sm text-gray-500 text-center max-w-xs">
           {score.recommendation}
         </p>
       </div>

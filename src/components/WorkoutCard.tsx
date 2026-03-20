@@ -11,14 +11,14 @@ interface WorkoutCardProps {
 }
 
 const MUSCLE_GROUP_COLORS: Record<string, string> = {
-  chest: 'bg-blue-100 text-blue-700',
-  back: 'bg-purple-100 text-purple-700',
-  shoulders: 'bg-orange-100 text-orange-700',
-  legs: 'bg-emerald-100 text-emerald-700',
-  arms: 'bg-pink-100 text-pink-700',
-  core: 'bg-yellow-100 text-yellow-700',
-  full_body: 'bg-indigo-100 text-indigo-700',
-  cardio: 'bg-red-100 text-red-700',
+  chest: 'text-blue-600',
+  back: 'text-purple-600',
+  shoulders: 'text-orange-600',
+  legs: 'text-emerald-600',
+  arms: 'text-pink-600',
+  core: 'text-yellow-600',
+  full_body: 'text-indigo-600',
+  cardio: 'text-red-600',
 };
 
 export default function WorkoutCard({
@@ -55,23 +55,23 @@ export default function WorkoutCard({
     onLog(parsed);
   };
 
-  const badgeColor =
-    MUSCLE_GROUP_COLORS[exercise.muscleGroup] || 'bg-slate-100 text-slate-700';
+  const badgeTextColor =
+    MUSCLE_GROUP_COLORS[exercise.muscleGroup] || 'text-gray-500';
 
   return (
-    <div className="rounded-xl border bg-white p-4">
+    <div className="neu-flat p-4">
       <div className="flex items-start justify-between mb-2">
         <div>
-          <h3 className="text-base font-semibold text-slate-800">
+          <h3 className="text-base font-semibold text-gray-700">
             {exercise.name}
           </h3>
           <span
-            className={`inline-block mt-1 rounded-full px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide ${badgeColor}`}
+            className={`inline-block mt-1 neu-badge ${badgeTextColor}`}
           >
             {exercise.muscleGroup.replace('_', ' ')}
           </span>
         </div>
-        <span className="text-sm text-slate-400">
+        <span className="text-sm text-gray-400">
           {exercise.sets} x {exercise.reps}
         </span>
       </div>
@@ -86,8 +86,8 @@ export default function WorkoutCard({
       {isLogged ? (
         <div className="mt-3 space-y-1">
           {logged.map((s, i) => (
-            <div key={i} className="flex gap-4 text-sm text-slate-500">
-              <span className="text-slate-400 w-12">Set {i + 1}</span>
+            <div key={i} className="flex gap-4 text-sm text-gray-500">
+              <span className="text-gray-400 w-12">Set {i + 1}</span>
               <span>{s.weight}kg</span>
               <span>{s.reps} reps</span>
             </div>
@@ -112,14 +112,14 @@ export default function WorkoutCard({
         <div className="mt-3 space-y-2">
           {sets.map((set, i) => (
             <div key={i} className="flex items-center gap-2">
-              <span className="text-xs text-slate-400 w-12">Set {i + 1}</span>
+              <span className="text-xs text-gray-400 w-12">Set {i + 1}</span>
               <input
                 type="number"
                 inputMode="numeric"
                 placeholder="kg"
                 value={set.weight}
                 onChange={(e) => handleSetChange(i, 'weight', e.target.value)}
-                className="w-20 rounded-lg border border-slate-200 px-2 py-1.5 text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-300"
+                className="w-20 neu-input !p-2 text-sm"
               />
               <input
                 type="number"
@@ -127,13 +127,13 @@ export default function WorkoutCard({
                 placeholder="reps"
                 value={set.reps}
                 onChange={(e) => handleSetChange(i, 'reps', e.target.value)}
-                className="w-20 rounded-lg border border-slate-200 px-2 py-1.5 text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-300"
+                className="w-20 neu-input !p-2 text-sm"
               />
             </div>
           ))}
           <button
             onClick={handleSubmit}
-            className="mt-2 w-full rounded-lg bg-rose-500 px-4 py-2 text-sm font-medium text-white hover:bg-rose-600 active:bg-rose-700 transition-colors"
+            className="mt-2 w-full neu-btn-rose text-sm"
           >
             Log Exercise
           </button>

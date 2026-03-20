@@ -132,18 +132,18 @@ export default function OnboardingPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#e0e5ec] flex flex-col">
       {/* Progress bar */}
-      <div className="bg-white border-b border-slate-100 px-4 pt-6 pb-4">
+      <div className="bg-[#e0e5ec] px-4 pt-6 pb-4">
         <div className="max-w-lg mx-auto">
           <div className="flex items-center justify-between mb-2">
-            <h1 className="text-lg font-bold text-slate-800">Set Up Your Profile</h1>
-            <span className="text-sm text-slate-400">Step {step} of {TOTAL_STEPS}</span>
+            <h1 className="text-lg font-bold text-gray-700">Set Up Your Profile</h1>
+            <span className="text-sm text-gray-400">Step {step} of {TOTAL_STEPS}</span>
           </div>
-          <div className="w-full bg-slate-100 rounded-full h-2">
+          <div className="neu-pressed w-full h-3 !rounded-full">
             <div
-              className="bg-rose-500 h-2 rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${(step / TOTAL_STEPS) * 100}%` }}
+              className="h-3 rounded-full transition-all duration-500 ease-out"
+              style={{ width: `${(step / TOTAL_STEPS) * 100}%`, background: 'linear-gradient(145deg, #c084fc, #a78bfa)' }}
             />
           </div>
         </div>
@@ -155,42 +155,42 @@ export default function OnboardingPage() {
         {step === 1 && (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-800">Welcome to Pulse</h2>
-              <p className="text-slate-500 mt-2">Let&apos;s get to know you a bit</p>
+              <h2 className="text-2xl font-bold text-gray-700">Welcome to Pulse</h2>
+              <p className="text-gray-500 mt-2">Let&apos;s get to know you a bit</p>
             </div>
-            <div className="bg-white rounded-xl shadow-sm p-6 space-y-5">
+            <div className="neu-flat p-6 space-y-5">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">Your Name</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Your Name</label>
                 <input
                   type="text"
                   value={name}
                   onChange={e => setName(e.target.value)}
                   placeholder="Enter your name"
-                  className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  className="neu-input"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">Age</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Age</label>
                 <input
                   type="number"
                   value={age}
                   onChange={e => setAge(parseInt(e.target.value) || 0)}
                   min={10}
                   max={100}
-                  className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  className="neu-input"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-3">Sex</label>
+                <label className="block text-sm font-medium text-gray-700 mb-3">Sex</label>
                 <div className="grid grid-cols-2 gap-3">
                   {(['female', 'male'] as Sex[]).map(s => (
                     <button
                       key={s}
                       onClick={() => setSex(s)}
-                      className={`py-3 rounded-lg font-medium text-sm transition-all ${
+                      className={`py-3 rounded-xl font-medium text-sm transition-all ${
                         sex === s
-                          ? 'bg-rose-500 text-white shadow-sm'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                          ? 'neu-pressed text-purple-600'
+                          : 'neu-btn text-gray-500'
                       }`}
                     >
                       {s === 'female' ? 'Female' : 'Male'}
@@ -206,12 +206,12 @@ export default function OnboardingPage() {
         {step === 2 && (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-800">Your Body</h2>
-              <p className="text-slate-500 mt-2">Used to calculate your personalized nutrition</p>
+              <h2 className="text-2xl font-bold text-gray-700">Your Body</h2>
+              <p className="text-gray-500 mt-2">Used to calculate your personalized nutrition</p>
             </div>
-            <div className="bg-white rounded-xl shadow-sm p-6 space-y-5">
+            <div className="neu-flat p-6 space-y-5">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">Weight (kg)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Weight (kg)</label>
                 <input
                   type="number"
                   value={weight}
@@ -219,18 +219,18 @@ export default function OnboardingPage() {
                   min={30}
                   max={300}
                   step={0.5}
-                  className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  className="neu-input"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-1.5">Height (cm)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Height (cm)</label>
                 <input
                   type="number"
                   value={height}
                   onChange={e => setHeight(parseFloat(e.target.value) || 0)}
                   min={100}
                   max={250}
-                  className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  className="neu-input"
                 />
               </div>
             </div>
@@ -241,28 +241,28 @@ export default function OnboardingPage() {
         {step === 3 && (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-800">Your Goal</h2>
-              <p className="text-slate-500 mt-2">This shapes your meal plans and workouts</p>
+              <h2 className="text-2xl font-bold text-gray-700">Your Goal</h2>
+              <p className="text-gray-500 mt-2">This shapes your meal plans and workouts</p>
             </div>
             <div className="space-y-3">
               {(Object.keys(GOAL_LABELS) as Goal[]).map(g => (
                 <button
                   key={g}
                   onClick={() => setGoal(g)}
-                  className={`w-full text-left rounded-xl p-5 transition-all ${
+                  className={`w-full text-left p-5 transition-all ${
                     goal === g
-                      ? 'bg-white ring-2 ring-rose-500 shadow-md'
-                      : 'bg-white shadow-sm hover:shadow-md'
+                      ? 'neu-pressed'
+                      : 'neu-flat'
                   }`}
                 >
                   <div className="flex items-start gap-4">
                     <span className="text-3xl">{goalIcons[g]}</span>
                     <div className="flex-1">
-                      <h3 className="font-bold text-slate-800">{GOAL_LABELS[g]}</h3>
-                      <p className="text-sm text-slate-500 mt-1">{goalDescriptions[g]}</p>
+                      <h3 className={`font-bold ${goal === g ? 'text-purple-600' : 'text-gray-700'}`}>{GOAL_LABELS[g]}</h3>
+                      <p className="text-sm text-gray-500 mt-1">{goalDescriptions[g]}</p>
                     </div>
                     {goal === g && (
-                      <div className="w-5 h-5 bg-rose-500 rounded-full flex items-center justify-center mt-1">
+                      <div className="w-5 h-5 rounded-full flex items-center justify-center mt-1" style={{ background: 'linear-gradient(145deg, #c084fc, #a78bfa)' }}>
                         <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" />
                         </svg>
@@ -279,21 +279,21 @@ export default function OnboardingPage() {
         {step === 4 && (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-800">Activity & Experience</h2>
-              <p className="text-slate-500 mt-2">Helps us tailor your workout plan</p>
+              <h2 className="text-2xl font-bold text-gray-700">Activity & Experience</h2>
+              <p className="text-gray-500 mt-2">Helps us tailor your workout plan</p>
             </div>
-            <div className="bg-white rounded-xl shadow-sm p-6 space-y-5">
+            <div className="neu-flat p-6 space-y-5">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-3">Activity Level</label>
+                <label className="block text-sm font-medium text-gray-700 mb-3">Activity Level</label>
                 <div className="space-y-2">
                   {(Object.keys(ACTIVITY_LABELS) as ActivityLevel[]).map(level => (
                     <button
                       key={level}
                       onClick={() => setActivityLevel(level)}
-                      className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all ${
+                      className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all ${
                         activityLevel === level
-                          ? 'bg-rose-50 border-2 border-rose-500 text-rose-700 font-medium'
-                          : 'bg-slate-50 border-2 border-transparent text-slate-600 hover:bg-slate-100'
+                          ? 'neu-pressed text-purple-600 font-medium'
+                          : 'neu-btn text-gray-500'
                       }`}
                     >
                       {ACTIVITY_LABELS[level]}
@@ -302,16 +302,16 @@ export default function OnboardingPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-3">Fitness Experience</label>
+                <label className="block text-sm font-medium text-gray-700 mb-3">Fitness Experience</label>
                 <div className="space-y-2">
                   {(Object.keys(EXPERIENCE_LABELS) as FitnessExperience[]).map(exp => (
                     <button
                       key={exp}
                       onClick={() => setFitnessExperience(exp)}
-                      className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all ${
+                      className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all ${
                         fitnessExperience === exp
-                          ? 'bg-rose-50 border-2 border-rose-500 text-rose-700 font-medium'
-                          : 'bg-slate-50 border-2 border-transparent text-slate-600 hover:bg-slate-100'
+                          ? 'neu-pressed text-purple-600 font-medium'
+                          : 'neu-btn text-gray-500'
                       }`}
                     >
                       {EXPERIENCE_LABELS[exp]}
@@ -327,13 +327,13 @@ export default function OnboardingPage() {
         {step === 5 && (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-800">Lifestyle</h2>
-              <p className="text-slate-500 mt-2">Sleep and stress affect your recovery and results</p>
+              <h2 className="text-2xl font-bold text-gray-700">Lifestyle</h2>
+              <p className="text-gray-500 mt-2">Sleep and stress affect your recovery and results</p>
             </div>
-            <div className="bg-white rounded-xl shadow-sm p-6 space-y-6">
+            <div className="neu-flat p-6 space-y-6">
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-3">
-                  Average Sleep: <span className="text-rose-500 font-bold">{sleepHours}h</span>
+                <label className="block text-sm font-medium text-gray-700 mb-3">
+                  Average Sleep: <span className="text-purple-500 font-bold">{sleepHours}h</span>
                 </label>
                 <input
                   type="range"
@@ -342,16 +342,16 @@ export default function OnboardingPage() {
                   step={0.5}
                   value={sleepHours}
                   onChange={e => setSleepHours(parseFloat(e.target.value))}
-                  className="w-full accent-rose-500"
+                  className="w-full"
                 />
-                <div className="flex justify-between text-xs text-slate-400 mt-1">
+                <div className="flex justify-between text-xs text-gray-400 mt-1">
                   <span>4h</span>
                   <span>8h</span>
                   <span>12h</span>
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-3">
+                <label className="block text-sm font-medium text-gray-700 mb-3">
                   Typical Stress Level
                 </label>
                 <div className="grid grid-cols-5 gap-2">
@@ -359,17 +359,17 @@ export default function OnboardingPage() {
                     <button
                       key={level}
                       onClick={() => setStressLevel(level)}
-                      className={`py-3 rounded-lg font-medium text-sm transition-all ${
+                      className={`py-3 rounded-xl font-medium text-sm transition-all ${
                         stressLevel === level
-                          ? 'bg-rose-500 text-white shadow-sm'
-                          : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                          ? 'neu-pressed text-purple-600'
+                          : 'neu-btn text-gray-500'
                       }`}
                     >
                       {level}
                     </button>
                   ))}
                 </div>
-                <div className="flex justify-between text-xs text-slate-400 mt-2">
+                <div className="flex justify-between text-xs text-gray-400 mt-2">
                   <span>Very Low</span>
                   <span>Very High</span>
                 </div>
@@ -382,8 +382,8 @@ export default function OnboardingPage() {
         {step === 6 && (
           <div className="space-y-6">
             <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold text-slate-800">Household</h2>
-              <p className="text-slate-500 mt-2">
+              <h2 className="text-2xl font-bold text-gray-700">Household</h2>
+              <p className="text-gray-500 mt-2">
                 Add family members for combined shopping lists (optional)
               </p>
             </div>
@@ -391,16 +391,16 @@ export default function OnboardingPage() {
             {household.length > 0 && (
               <div className="space-y-3">
                 {household.map(m => (
-                  <div key={m.id} className="bg-white rounded-xl shadow-sm p-4 flex items-center justify-between">
+                  <div key={m.id} className="neu-flat p-4 flex items-center justify-between">
                     <div>
-                      <p className="font-medium text-slate-800">{m.name}</p>
-                      <p className="text-sm text-slate-500">
+                      <p className="font-medium text-gray-700">{m.name}</p>
+                      <p className="text-sm text-gray-500">
                         {m.age}y, {m.weight}kg — {GOAL_LABELS[m.goal]}
                       </p>
                     </div>
                     <button
                       onClick={() => setHousehold(household.filter(h => h.id !== m.id))}
-                      className="text-slate-400 hover:text-red-500 transition-colors"
+                      className="text-gray-400 hover:text-red-500 transition-colors"
                     >
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -412,35 +412,35 @@ export default function OnboardingPage() {
             )}
 
             {showMemberForm ? (
-              <div className="bg-white rounded-xl shadow-sm p-6 space-y-4">
+              <div className="neu-flat p-6 space-y-4">
                 <input
                   type="text"
                   value={memberName}
                   onChange={e => setMemberName(e.target.value)}
                   placeholder="Name"
-                  className="w-full border border-slate-200 rounded-lg px-4 py-3 text-slate-800 placeholder-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                  className="neu-input"
                 />
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs text-slate-500 mb-1">Age</label>
+                    <label className="block text-xs text-gray-400 mb-1">Age</label>
                     <input
                       type="number"
                       value={memberAge}
                       onChange={e => setMemberAge(parseInt(e.target.value) || 0)}
-                      className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                      className="neu-input text-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-slate-500 mb-1">Sex</label>
+                    <label className="block text-xs text-gray-400 mb-1">Sex</label>
                     <div className="grid grid-cols-2 gap-2">
                       {(['female', 'male'] as Sex[]).map(s => (
                         <button
                           key={s}
                           onClick={() => setMemberSex(s)}
-                          className={`py-2 rounded-lg text-xs font-medium ${
+                          className={`py-2 rounded-xl text-xs font-medium ${
                             memberSex === s
-                              ? 'bg-rose-500 text-white'
-                              : 'bg-slate-100 text-slate-600'
+                              ? 'neu-pressed text-purple-600'
+                              : 'neu-btn text-gray-500'
                           }`}
                         >
                           {s === 'female' ? 'F' : 'M'}
@@ -451,35 +451,35 @@ export default function OnboardingPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-3">
                   <div>
-                    <label className="block text-xs text-slate-500 mb-1">Weight (kg)</label>
+                    <label className="block text-xs text-gray-400 mb-1">Weight (kg)</label>
                     <input
                       type="number"
                       value={memberWeight}
                       onChange={e => setMemberWeight(parseFloat(e.target.value) || 0)}
-                      className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                      className="neu-input text-sm"
                     />
                   </div>
                   <div>
-                    <label className="block text-xs text-slate-500 mb-1">Height (cm)</label>
+                    <label className="block text-xs text-gray-400 mb-1">Height (cm)</label>
                     <input
                       type="number"
                       value={memberHeight}
                       onChange={e => setMemberHeight(parseFloat(e.target.value) || 0)}
-                      className="w-full border border-slate-200 rounded-lg px-3 py-2 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-rose-500 focus:border-transparent"
+                      className="neu-input text-sm"
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-xs text-slate-500 mb-1">Goal</label>
+                  <label className="block text-xs text-gray-400 mb-1">Goal</label>
                   <div className="grid grid-cols-3 gap-2">
                     {(Object.keys(GOAL_LABELS) as Goal[]).map(g => (
                       <button
                         key={g}
                         onClick={() => setMemberGoal(g)}
-                        className={`py-2 rounded-lg text-xs font-medium ${
+                        className={`py-2 rounded-xl text-xs font-medium ${
                           memberGoal === g
-                            ? 'bg-rose-500 text-white'
-                            : 'bg-slate-100 text-slate-600'
+                            ? 'neu-pressed text-purple-600'
+                            : 'neu-btn text-gray-500'
                         }`}
                       >
                         {GOAL_LABELS[g]}
@@ -490,14 +490,14 @@ export default function OnboardingPage() {
                 <div className="flex gap-2">
                   <button
                     onClick={() => setShowMemberForm(false)}
-                    className="flex-1 py-2.5 rounded-lg border border-slate-200 text-slate-600 text-sm font-medium hover:bg-slate-50"
+                    className="neu-btn flex-1 py-2.5 text-sm"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={handleAddMember}
                     disabled={!memberName.trim()}
-                    className="flex-1 py-2.5 rounded-lg bg-rose-500 text-white text-sm font-medium hover:bg-rose-600 disabled:opacity-50"
+                    className="neu-btn-accent flex-1 py-2.5 text-sm disabled:opacity-50"
                   >
                     Add
                   </button>
@@ -506,7 +506,7 @@ export default function OnboardingPage() {
             ) : (
               <button
                 onClick={() => setShowMemberForm(true)}
-                className="w-full py-3 rounded-xl border-2 border-dashed border-slate-300 text-slate-500 text-sm font-medium hover:border-rose-300 hover:text-rose-500 transition-colors"
+                className="neu-btn w-full py-3 text-sm text-gray-500 hover:text-purple-500 transition-colors"
               >
                 + Add Household Member
               </button>
@@ -516,12 +516,12 @@ export default function OnboardingPage() {
       </div>
 
       {/* Navigation Buttons */}
-      <div className="sticky bottom-0 bg-white border-t border-slate-100 p-4">
+      <div className="sticky bottom-0 bg-[#e0e5ec] p-4" style={{ boxShadow: '0 -4px 12px rgba(184, 190, 199, 0.3)' }}>
         <div className="max-w-lg mx-auto flex gap-3">
           {step > 1 && (
             <button
               onClick={() => setStep(step - 1)}
-              className="flex-1 py-3 rounded-xl border border-slate-200 text-slate-600 font-medium hover:bg-slate-50 transition-colors"
+              className="neu-btn flex-1 py-3 font-medium"
             >
               Back
             </button>
@@ -530,14 +530,14 @@ export default function OnboardingPage() {
             <button
               onClick={() => setStep(step + 1)}
               disabled={!canProceed()}
-              className="flex-1 py-3 rounded-xl bg-rose-500 text-white font-medium hover:bg-rose-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+              className="neu-btn-accent flex-1 py-3 font-medium disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Next
             </button>
           ) : (
             <button
               onClick={handleFinish}
-              className="flex-1 py-3 rounded-xl bg-rose-500 text-white font-medium hover:bg-rose-600 transition-colors"
+              className="neu-btn-accent flex-1 py-3 font-medium"
             >
               Get Started
             </button>

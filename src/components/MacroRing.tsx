@@ -24,14 +24,17 @@ export default function MacroRing({
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <div className="relative" style={{ width: size, height: size }}>
+      <div
+        className="neu-circle relative flex items-center justify-center"
+        style={{ width: size + 16, height: size + 16 }}
+      >
         <svg width={size} height={size} className="-rotate-90">
           <circle
             cx={size / 2}
             cy={size / 2}
             r={radius}
             fill="none"
-            stroke="#f1f5f9"
+            stroke="#d1d5db"
             strokeWidth={strokeWidth}
           />
           <circle
@@ -48,13 +51,13 @@ export default function MacroRing({
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-lg font-bold text-slate-800">
+          <span className="text-lg font-bold text-gray-700">
             {Math.round(percentage)}%
           </span>
         </div>
       </div>
-      <span className="text-xs font-medium text-slate-500">{label}</span>
-      <span className="text-[10px] text-slate-400">
+      <span className="text-xs font-medium text-gray-500">{label}</span>
+      <span className="text-[10px] text-gray-400">
         {Math.round(current)} / {Math.round(target)}
       </span>
     </div>

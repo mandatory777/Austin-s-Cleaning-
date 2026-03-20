@@ -62,36 +62,36 @@ export default function WorkoutsPage() {
 
   if (!profile) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <p className="text-slate-400">Loading...</p>
+      <div className="min-h-screen bg-[#e0e5ec] flex items-center justify-center">
+        <p className="text-gray-400">Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-24">
+    <div className="min-h-screen bg-[#e0e5ec] pb-24">
       <div className="max-w-lg mx-auto px-4 pt-6 space-y-5">
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-bold text-slate-800">
+          <h1 className="text-2xl font-bold text-gray-700">
             {todayWorkout ? todayWorkout.name : 'Rest Day'}
           </h1>
-          <p className="text-sm text-slate-500">{dayNames[adjustedDay]}</p>
+          <p className="text-sm text-gray-500">{dayNames[adjustedDay]}</p>
         </div>
 
         {/* Intensity badge */}
         {todayWorkout && (
           <div className="flex items-center gap-3">
-            <span className={`text-xs font-medium px-3 py-1 rounded-full ${
+            <span className={`neu-badge ${
               todayWorkout.intensity === 'light'
-                ? 'bg-green-100 text-green-700'
+                ? 'text-green-600'
                 : todayWorkout.intensity === 'moderate'
-                ? 'bg-yellow-100 text-yellow-700'
-                : 'bg-red-100 text-red-700'
+                ? 'text-yellow-600'
+                : 'text-red-600'
             }`}>
               {todayWorkout.intensity.charAt(0).toUpperCase() + todayWorkout.intensity.slice(1)} Intensity
             </span>
-            <span className="text-sm text-slate-500">
+            <span className="text-sm text-gray-500">
               ~{todayWorkout.estimatedMinutes} min
             </span>
           </div>
@@ -99,13 +99,13 @@ export default function WorkoutsPage() {
 
         {/* Recovery warning */}
         {todayRecovery?.shouldRest && (
-          <div className="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start gap-3">
+          <div className="neu-flat p-4 flex items-start gap-3">
             <svg className="w-5 h-5 text-amber-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L4.082 16.5c-.77.833.192 2.5 1.732 2.5z" />
             </svg>
             <div>
-              <p className="text-sm font-medium text-amber-700">Your recovery score suggests a rest day</p>
-              <p className="text-xs text-amber-600 mt-0.5">
+              <p className="text-sm font-medium text-amber-600">Your recovery score suggests a rest day</p>
+              <p className="text-xs text-amber-500 mt-0.5">
                 Consider lighter activity or stretching instead.
               </p>
             </div>
@@ -114,8 +114,8 @@ export default function WorkoutsPage() {
 
         {/* Adjusted macros note */}
         {adjustedMacros && todayWorkout && todayWorkout.intensity !== 'light' && (
-          <div className="bg-blue-50 border border-blue-200 rounded-xl px-4 py-3">
-            <p className="text-xs text-blue-600">
+          <div className="neu-flat px-4 py-3">
+            <p className="text-xs text-purple-500">
               Nutrition adjusted: {adjustedMacros.calories} kcal / {adjustedMacros.protein}g protein for today&apos;s {todayWorkout.intensity} session
             </p>
           </div>
@@ -123,10 +123,10 @@ export default function WorkoutsPage() {
 
         {/* Completed state */}
         {isCompleted && (
-          <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center">
+          <div className="neu-flat p-5 text-center">
             <div className="text-4xl mb-2">&#127881;</div>
-            <h3 className="text-lg font-bold text-green-700">Workout Complete!</h3>
-            <p className="text-sm text-green-600 mt-1">Great job. Your session has been logged.</p>
+            <h3 className="text-lg font-bold text-green-600">Workout Complete!</h3>
+            <p className="text-sm text-green-500 mt-1">Great job. Your session has been logged.</p>
           </div>
         )}
 
@@ -148,18 +148,18 @@ export default function WorkoutsPage() {
         )}
 
         {!todayWorkout && (
-          <div className="bg-white rounded-xl shadow-sm p-8 text-center">
+          <div className="neu-flat p-8 text-center">
             <div className="text-4xl mb-3">&#128524;</div>
-            <h3 className="text-lg font-bold text-slate-700">Rest Day</h3>
-            <p className="text-sm text-slate-500 mt-1">
+            <h3 className="text-lg font-bold text-gray-700">Rest Day</h3>
+            <p className="text-sm text-gray-500 mt-1">
               Take it easy today. Recovery is when your body gets stronger.
             </p>
           </div>
         )}
 
         {/* Weekly Schedule */}
-        <div className="bg-white rounded-xl shadow-sm p-5">
-          <h2 className="text-sm font-semibold text-slate-600 uppercase tracking-wide mb-4">
+        <div className="neu-flat p-5">
+          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
             Weekly Schedule
           </h2>
           <div className="space-y-2">
@@ -169,29 +169,29 @@ export default function WorkoutsPage() {
               return (
                 <div
                   key={dayName}
-                  className={`flex items-center justify-between px-3 py-2.5 rounded-lg ${
-                    isToday ? 'bg-rose-50 border border-rose-200' : 'bg-slate-50'
+                  className={`flex items-center justify-between px-3 py-2.5 rounded-xl ${
+                    isToday ? 'neu-pressed' : 'bg-[#e0e5ec]'
                   }`}
                 >
                   <div className="flex items-center gap-3">
                     <span className={`text-xs font-medium w-8 ${
-                      isToday ? 'text-rose-600' : 'text-slate-400'
+                      isToday ? 'text-purple-600' : 'text-gray-400'
                     }`}>
                       {dayName.slice(0, 3)}
                     </span>
                     <span className={`text-sm ${
-                      isToday ? 'font-semibold text-rose-700' : 'text-slate-600'
+                      isToday ? 'font-semibold text-purple-600' : 'text-gray-500'
                     }`}>
                       {workout ? workout.name : 'Rest'}
                     </span>
                   </div>
                   {workout && (
-                    <span className={`text-xs px-2 py-0.5 rounded-full ${
+                    <span className={`neu-badge ${
                       workout.intensity === 'light'
-                        ? 'bg-green-100 text-green-600'
+                        ? 'text-green-600'
                         : workout.intensity === 'moderate'
-                        ? 'bg-yellow-100 text-yellow-600'
-                        : 'bg-red-100 text-red-600'
+                        ? 'text-yellow-600'
+                        : 'text-red-600'
                     }`}>
                       {workout.intensity}
                     </span>
@@ -209,7 +209,7 @@ export default function WorkoutsPage() {
           <div className="max-w-lg mx-auto">
             <button
               onClick={handleComplete}
-              className="w-full py-4 rounded-xl bg-rose-500 text-white font-bold text-lg shadow-lg hover:bg-rose-600 transition-colors"
+              className="neu-btn-rose w-full py-4 font-bold text-lg"
             >
               Complete Workout
             </button>

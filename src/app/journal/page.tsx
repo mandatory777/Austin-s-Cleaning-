@@ -37,16 +37,16 @@ export default function JournalPage() {
 
   if (!profile) {
     return (
-      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
-        <p className="text-slate-400">Loading...</p>
+      <div className="min-h-screen bg-[#e0e5ec] flex items-center justify-center">
+        <p className="text-gray-400">Loading...</p>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50 pb-20">
+    <div className="min-h-screen bg-[#e0e5ec] pb-20">
       <div className="max-w-lg mx-auto px-4 pt-6 space-y-5">
-        <h1 className="text-2xl font-bold text-slate-800">Food Journal</h1>
+        <h1 className="text-2xl font-bold text-gray-700">Food Journal</h1>
 
         {/* Check-in form */}
         <JournalCheckIn onSubmit={handleSubmit} />
@@ -54,7 +54,7 @@ export default function JournalPage() {
         {/* Food Insights */}
         {hasInsights && (
           <div className="space-y-4">
-            <h2 className="text-lg font-bold text-slate-800">Your Food Insights</h2>
+            <h2 className="text-lg font-bold text-gray-700">Your Food Insights</h2>
 
             {topFoods.length > 0 && (
               <div>
@@ -65,10 +65,10 @@ export default function JournalPage() {
                   {topFoods.map(food => (
                     <div
                       key={food.foodName}
-                      className="bg-green-50 border border-green-200 rounded-xl px-4 py-2.5"
+                      className="neu-flat px-4 py-2.5"
                     >
-                      <p className="text-sm font-medium text-green-700 capitalize">{food.foodName}</p>
-                      <p className="text-xs text-green-600">
+                      <p className="text-sm font-medium text-green-600 capitalize">{food.foodName}</p>
+                      <p className="text-xs text-gray-500">
                         Score: {food.overallScore}/3 ({food.entries} entries)
                       </p>
                     </div>
@@ -88,10 +88,10 @@ export default function JournalPage() {
                     .map(food => (
                       <div
                         key={food.foodName}
-                        className="bg-red-50 border border-red-200 rounded-xl px-4 py-2.5"
+                        className="neu-flat px-4 py-2.5"
                       >
-                        <p className="text-sm font-medium text-red-700 capitalize">{food.foodName}</p>
-                        <p className="text-xs text-red-600">
+                        <p className="text-sm font-medium text-red-600 capitalize">{food.foodName}</p>
+                        <p className="text-xs text-gray-500">
                           Score: {food.overallScore}/3 ({food.entries} entries)
                         </p>
                       </div>
@@ -103,8 +103,8 @@ export default function JournalPage() {
         )}
 
         {!hasInsights && journalEntries.length > 0 && (
-          <div className="bg-slate-100 rounded-xl p-4 text-center">
-            <p className="text-sm text-slate-500">
+          <div className="neu-pressed p-4 text-center">
+            <p className="text-sm text-gray-500">
               Log {5 - journalEntries.length} more entries to unlock food insights
             </p>
           </div>
@@ -113,17 +113,17 @@ export default function JournalPage() {
         {/* Recent entries */}
         {journalEntries.length > 0 && (
           <div>
-            <h2 className="text-lg font-bold text-slate-800 mb-3">Recent Entries</h2>
+            <h2 className="text-lg font-bold text-gray-700 mb-3">Recent Entries</h2>
             <div className="space-y-3">
               {[...journalEntries]
                 .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
                 .slice(0, 20)
                 .map(entry => (
-                  <div key={entry.id} className="bg-white rounded-xl shadow-sm p-4">
+                  <div key={entry.id} className="neu-flat p-4">
                     <div className="flex items-center justify-between mb-2">
                       <div>
-                        <span className="text-sm font-medium text-slate-700 capitalize">{entry.mealType}</span>
-                        <span className="text-xs text-slate-400 ml-2">
+                        <span className="text-sm font-medium text-gray-700 capitalize">{entry.mealType}</span>
+                        <span className="text-xs text-gray-400 ml-2">
                           {new Date(entry.timestamp).toLocaleDateString('en-US', {
                             month: 'short',
                             day: 'numeric',
@@ -140,7 +140,7 @@ export default function JournalPage() {
                       {entry.foodNames.map((food, i) => (
                         <span
                           key={i}
-                          className="bg-slate-100 text-slate-600 text-xs px-2 py-1 rounded-lg"
+                          className="neu-badge"
                         >
                           {food}
                         </span>
@@ -153,10 +153,10 @@ export default function JournalPage() {
         )}
 
         {journalEntries.length === 0 && (
-          <div className="bg-white rounded-xl shadow-sm p-8 text-center">
+          <div className="neu-flat p-8 text-center">
             <div className="text-4xl mb-3">&#128221;</div>
-            <h3 className="text-lg font-bold text-slate-700">Start Your Journal</h3>
-            <p className="text-sm text-slate-500 mt-1">
+            <h3 className="text-lg font-bold text-gray-700">Start Your Journal</h3>
+            <p className="text-sm text-gray-500 mt-1">
               Track how foods make you feel. After 5 entries, you&apos;ll start seeing personalized insights.
             </p>
           </div>

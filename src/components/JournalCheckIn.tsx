@@ -53,15 +53,15 @@ export default function JournalCheckIn({ onSubmit }: JournalCheckInProps) {
   };
 
   return (
-    <div className="rounded-xl border bg-white p-5">
-      <h3 className="text-base font-semibold text-slate-800 mb-4">
+    <div className="neu-flat p-5">
+      <h3 className="text-base font-semibold text-gray-700 mb-4">
         Quick Check-In
       </h3>
 
       <div className="space-y-4 mb-4">
         {ROWS.map((row) => (
           <div key={row.key}>
-            <span className="text-xs font-medium text-slate-500 mb-1.5 block">
+            <span className="text-xs font-medium text-gray-500 mb-1.5 block">
               {row.label}
             </span>
             <div className="flex gap-2">
@@ -72,10 +72,10 @@ export default function JournalCheckIn({ onSubmit }: JournalCheckInProps) {
                   <button
                     key={rating}
                     onClick={() => setters[row.key](rating)}
-                    className={`flex-1 rounded-lg border-2 py-2.5 text-2xl transition-all ${
+                    className={`flex-1 rounded-xl py-2.5 text-2xl transition-all ${
                       isSelected
-                        ? 'border-rose-400 bg-rose-50 scale-105'
-                        : 'border-slate-100 bg-slate-50 hover:border-slate-200'
+                        ? 'neu-pressed text-[#a78bfa] scale-105'
+                        : 'neu-btn hover:scale-[1.02]'
                     }`}
                   >
                     {emoji}
@@ -88,7 +88,7 @@ export default function JournalCheckIn({ onSubmit }: JournalCheckInProps) {
       </div>
 
       <div className="mb-4">
-        <label className="text-xs font-medium text-slate-500 mb-1.5 block">
+        <label className="text-xs font-medium text-gray-500 mb-1.5 block">
           What did you eat? (comma-separated)
         </label>
         <input
@@ -96,14 +96,14 @@ export default function JournalCheckIn({ onSubmit }: JournalCheckInProps) {
           value={foodText}
           onChange={(e) => setFoodText(e.target.value)}
           placeholder="e.g. oatmeal, chicken salad, rice"
-          className="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm text-slate-700 placeholder:text-slate-300 focus:outline-none focus:ring-2 focus:ring-rose-300"
+          className="neu-input text-sm"
         />
       </div>
 
       <button
         onClick={handleSubmit}
         disabled={!canSubmit}
-        className="w-full rounded-lg bg-rose-500 px-4 py-2.5 text-sm font-medium text-white hover:bg-rose-600 active:bg-rose-700 transition-colors disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full neu-btn-accent text-sm disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Submit Check-In
       </button>

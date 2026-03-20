@@ -3,36 +3,132 @@
 @tailwind utilities;
 
 :root {
-  --background: #f8fafc;
-  --foreground: #0f172a;
+  --neu-bg: #e0e5ec;
+  --neu-shadow-dark: #b8bec7;
+  --neu-shadow-light: #ffffff;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
+  background: var(--neu-bg);
+  color: #4b5563;
 }
 
-/* Smooth transitions for interactive elements */
+/* Smooth transitions */
 button, a, input, select {
-  transition: all 0.15s ease;
+  transition: all 0.2s ease;
 }
 
-/* Hide scrollbar but keep functionality */
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-.no-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+/* Neomorphic utility classes */
+@layer components {
+  .neu-flat {
+    background: #e0e5ec;
+    border-radius: 1rem;
+    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+  }
+
+  .neu-pressed {
+    background: #e0e5ec;
+    border-radius: 1rem;
+    box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
+  }
+
+  .neu-btn {
+    background: #e0e5ec;
+    border-radius: 0.75rem;
+    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    color: #6b7280;
+    cursor: pointer;
+    border: none;
+  }
+
+  .neu-btn:active {
+    box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
+  }
+
+  .neu-btn-accent {
+    background: linear-gradient(145deg, #c084fc, #a78bfa);
+    color: white;
+    border-radius: 0.75rem;
+    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+
+  .neu-btn-accent:active {
+    box-shadow: inset 3px 3px 6px #7c3aed, inset -3px -3px 6px #c4b5fd;
+  }
+
+  .neu-btn-rose {
+    background: linear-gradient(145deg, #fb7185, #f472b6);
+    color: white;
+    border-radius: 0.75rem;
+    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+
+  .neu-btn-rose:active {
+    box-shadow: inset 3px 3px 6px #e11d48, inset -3px -3px 6px #fda4af;
+  }
+
+  .neu-input {
+    background: #e0e5ec;
+    border-radius: 0.75rem;
+    box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
+    padding: 0.75rem 1rem;
+    color: #374151;
+    border: none;
+    outline: none;
+    width: 100%;
+  }
+
+  .neu-input:focus {
+    box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
+  }
+
+  .neu-input::placeholder {
+    color: #9ca3af;
+  }
+
+  .neu-badge {
+    background: #e0e5ec;
+    border-radius: 2rem;
+    box-shadow: 2px 2px 4px #b8bec7, -2px -2px 4px #ffffff;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #6b7280;
+  }
+
+  .neu-circle {
+    background: #e0e5ec;
+    border-radius: 50%;
+    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+  }
+
+  .neu-circle-pressed {
+    background: #e0e5ec;
+    border-radius: 50%;
+    box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
+  }
 }
 
-/* Custom range slider for onboarding */
+/* Custom range slider */
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
   height: 8px;
   border-radius: 4px;
-  background: #e2e8f0;
+  background: #e0e5ec;
+  box-shadow: inset 2px 2px 4px #b8bec7, inset -2px -2px 4px #ffffff;
   outline: none;
 }
 
@@ -42,17 +138,21 @@ input[type="range"]::-webkit-slider-thumb {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #e11d48;
+  background: linear-gradient(145deg, #c084fc, #a78bfa);
   cursor: pointer;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px #b8bec7, -3px -3px 6px #ffffff;
 }
 
 input[type="range"]::-moz-range-thumb {
   width: 24px;
   height: 24px;
   border-radius: 50%;
-  background: #e11d48;
+  background: linear-gradient(145deg, #c084fc, #a78bfa);
   cursor: pointer;
   border: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 3px 3px 6px #b8bec7, -3px -3px 6px #ffffff;
 }
+
+/* Hide scrollbar */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
