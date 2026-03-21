@@ -32,6 +32,7 @@ export default function OnboardingPage() {
 
   // Step 2
   const [weight, setWeight] = useState<number>(143);
+  const [goalWeightVal, setGoalWeightVal] = useState<number>(130);
   const [heightFeet, setHeightFeet] = useState<number>(5);
   const [heightInches, setHeightInches] = useState<number>(5);
 
@@ -111,6 +112,7 @@ export default function OnboardingPage() {
       sex,
       weight: weightKg,
       height: heightCm,
+      goalWeight: goalWeightVal,
       goal,
       activityLevel,
       fitnessExperience,
@@ -228,6 +230,19 @@ export default function OnboardingPage() {
                   step={1}
                   className="neu-input"
                 />
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Goal Weight (lbs)</label>
+                <input
+                  type="number"
+                  value={goalWeightVal}
+                  onChange={e => setGoalWeightVal(parseFloat(e.target.value) || 0)}
+                  min={66}
+                  max={660}
+                  step={1}
+                  className="neu-input"
+                />
+                <p className="text-xs text-gray-400 mt-1">What weight are you working toward?</p>
               </div>
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1.5">Height</label>

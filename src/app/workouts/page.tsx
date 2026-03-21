@@ -5,6 +5,7 @@ import { useApp } from '@/contexts/AppContext';
 import { WorkoutSession, ExerciseLog, getProgressiveOverload } from '@/lib/workouts';
 import WorkoutCard from '@/components/WorkoutCard';
 import PlaylistCard from '@/components/PlaylistCard';
+import WeightChart from '@/components/WeightChart';
 import { getPlaylistForWorkout } from '@/lib/playlists';
 
 export default function WorkoutsPage() {
@@ -80,6 +81,13 @@ export default function WorkoutsPage() {
           </h1>
           <p className="text-sm text-gray-500">{dayNames[adjustedDay]}</p>
         </div>
+
+        {/* Weight Progress Chart */}
+        <WeightChart
+          currentWeightKg={profile.weight}
+          goalWeight={profile.goalWeight}
+          startWeight={Math.round(profile.weight * 2.205)}
+        />
 
         {/* Intensity badge */}
         {todayWorkout && (

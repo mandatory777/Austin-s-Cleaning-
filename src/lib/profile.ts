@@ -16,12 +16,18 @@ export interface HouseholdMember {
   macros: Macros;
 }
 
+export interface WeightEntry {
+  date: string;
+  weight: number; // lbs
+}
+
 export interface UserProfile {
   name: string;
   age: number;
   sex: Sex;
   weight: number; // kg
   height: number; // cm
+  goalWeight?: number; // lbs
   goal: Goal;
   activityLevel: ActivityLevel;
   fitnessExperience: FitnessExperience;
