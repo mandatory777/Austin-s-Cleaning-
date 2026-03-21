@@ -14,9 +14,9 @@ export default function MacroRing({
   target,
   label,
   color,
-  size = 100,
+  size = 64,
 }: MacroRingProps) {
-  const strokeWidth = size * 0.08;
+  const strokeWidth = size * 0.1;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const percentage = target > 0 ? Math.min((current / target) * 100, 100) : 0;
@@ -51,7 +51,7 @@ export default function MacroRing({
           />
         </svg>
         <div className="absolute inset-0 flex items-center justify-center">
-          <span className="text-lg font-bold text-gray-700">
+          <span className="text-sm font-bold text-gray-700">
             {Math.round(percentage)}%
           </span>
         </div>

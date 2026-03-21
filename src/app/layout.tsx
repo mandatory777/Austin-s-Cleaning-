@@ -24,7 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} font-sans antialiased`} style={{ background: '#e0e5ec', color: '#4b5563' }}>
         <AppProvider>
-          <main className="min-h-screen max-w-lg mx-auto">
+          <main className="min-h-screen max-w-lg md:max-w-2xl mx-auto">
             {children}
           </main>
           <BottomNav />

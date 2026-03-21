@@ -14,7 +14,10 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(xargs kill:*)",
       "Bash(npm list:*)",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Bash(for f:*)",
+      "Bash(do sed:*)",
+      "Bash(done)"
     ]
   }
 }

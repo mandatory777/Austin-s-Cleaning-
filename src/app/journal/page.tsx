@@ -45,7 +45,7 @@ export default function JournalPage() {
 
   return (
     <div className="min-h-screen bg-[#e0e5ec] pb-20">
-      <div className="max-w-lg mx-auto px-4 pt-6 space-y-5">
+      <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
         <h1 className="text-2xl font-bold text-gray-700">Food Journal</h1>
 
         {/* Check-in form */}

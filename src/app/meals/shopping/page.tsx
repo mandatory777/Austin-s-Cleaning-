@@ -36,7 +36,7 @@ export default function ShoppingPage() {
 
   return (
     <div className="min-h-screen bg-[#e0e5ec] pb-20">
-      <div className="max-w-lg mx-auto px-4 pt-6 space-y-5">
+      <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
         {/* Header */}
         <div className="flex items-center gap-3">
           <Link
