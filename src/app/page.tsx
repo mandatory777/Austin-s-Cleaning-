@@ -98,7 +98,7 @@ export default function DashboardPage() {
 
         {/* Today's Workout */}
         <Link href="/workouts" className="block">
-          <div className="neu-flat p-5 hover:shadow-none transition-shadow">
+          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ borderLeft: '4px solid #f43f5e' }}>
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                 Today&apos;s Workout
@@ -136,7 +136,7 @@ export default function DashboardPage() {
 
         {/* Recovery Score */}
         <Link href="/recovery" className="block">
-          <div className="neu-flat p-5 hover:shadow-none transition-shadow">
+          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ borderLeft: '4px solid #3b82f6' }}>
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                 Recovery
@@ -173,10 +173,10 @@ export default function DashboardPage() {
 
         {/* Journal Prompt */}
         <Link href="/journal" className="block">
-          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ background: 'linear-gradient(135deg, #e0e5ec 60%, #d8b4fe 150%)' }}>
+          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ background: 'linear-gradient(135deg, #e0e5ec 60%, #fde68a 150%)' }}>
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-sm font-semibold text-purple-500 uppercase tracking-wide">
+                <h2 className="text-sm font-semibold text-amber-500 uppercase tracking-wide">
                   Food Journal
                 </h2>
                 <p className="text-gray-500 text-sm mt-1">

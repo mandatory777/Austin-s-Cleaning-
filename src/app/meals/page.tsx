@@ -52,12 +52,12 @@ export default function MealsPage() {
         {/* Header */}
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-2xl font-bold text-gray-700">Today&apos;s Meals</h1>
+            <h1 className="text-2xl font-bold text-emerald-700">Today&apos;s Meals</h1>
             <p className="text-sm text-gray-500">{todayStr}</p>
           </div>
           <Link
             href="/meals/shopping"
-            className="neu-btn-accent text-sm py-2 px-4"
+            className="neu-btn-green text-sm py-2 px-4"
           >
             Shopping List
           </Link>
@@ -138,7 +138,7 @@ export default function MealsPage() {
             <button
               onClick={handlePantryMode}
               disabled={!pantryInput.trim()}
-              className="neu-btn-accent w-full py-2.5 text-sm disabled:opacity-50"
+              className="neu-btn-green w-full py-2.5 text-sm disabled:opacity-50"
             >
               Generate from Pantry
             </button>

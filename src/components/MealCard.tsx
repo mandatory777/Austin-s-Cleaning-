@@ -2,6 +2,14 @@
 
 import { MealSlot } from '@/lib/meals';
 
+const mealTypeColors: Record<string, string> = {
+  breakfast: '#fb923c',
+  snack_am: '#facc15',
+  lunch: '#34d399',
+  snack_pm: '#facc15',
+  dinner: '#818cf8',
+};
+
 interface MealCardProps {
   meal: MealSlot;
   onLog: () => void;
@@ -19,6 +27,7 @@ export default function MealCard({ meal, onLog, onSwap }: MealCardProps) {
       className={`neu-flat p-4 transition-opacity ${
         meal.logged ? 'neu-pressed opacity-60' : ''
       }`}
+      style={{ borderLeft: `4px solid ${mealTypeColors[meal.type] || '#9ca3af'}` }}
     >
       <div className="flex items-start justify-between mb-2">
         <div>
@@ -63,7 +72,7 @@ export default function MealCard({ meal, onLog, onSwap }: MealCardProps) {
           className={`flex-1 text-sm font-medium transition-all ${
             meal.logged
               ? 'neu-pressed text-green-600 cursor-default px-3 py-2 rounded-xl'
-              : 'neu-btn-accent'
+              : 'neu-btn-green'
           }`}
         >
           {meal.logged ? 'Logged' : 'Log'}

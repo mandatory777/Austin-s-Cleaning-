@@ -90,6 +90,51 @@ input {
     box-shadow: inset 3px 3px 6px #e11d48, inset -3px -3px 6px #fda4af;
   }
 
+  /* Green button (meals) */
+  .neu-btn-green {
+    background: linear-gradient(145deg, #34d399, #10b981);
+    color: white;
+    border-radius: 0.75rem;
+    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+  .neu-btn-green:active {
+    box-shadow: inset 3px 3px 6px #059669, inset -3px -3px 6px #6ee7b7;
+  }
+
+  /* Blue button (recovery) */
+  .neu-btn-blue {
+    background: linear-gradient(145deg, #60a5fa, #3b82f6);
+    color: white;
+    border-radius: 0.75rem;
+    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+  .neu-btn-blue:active {
+    box-shadow: inset 3px 3px 6px #2563eb, inset -3px -3px 6px #93c5fd;
+  }
+
+  /* Amber button (journal) */
+  .neu-btn-amber {
+    background: linear-gradient(145deg, #fbbf24, #f59e0b);
+    color: white;
+    border-radius: 0.75rem;
+    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
+    padding: 0.625rem 1.25rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+  }
+  .neu-btn-amber:active {
+    box-shadow: inset 3px 3px 6px #d97706, inset -3px -3px 6px #fde68a;
+  }
+
   .neu-input {
     background: #e0e5ec;
     border-radius: 0.75rem;

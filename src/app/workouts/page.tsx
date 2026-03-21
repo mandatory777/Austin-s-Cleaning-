@@ -75,7 +75,7 @@ export default function WorkoutsPage() {
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
         {/* Header */}
         <div>
-          <h1 className="text-2xl font-bold text-gray-700">
+          <h1 className="text-2xl font-bold text-rose-700">
             {todayWorkout ? todayWorkout.name : 'Rest Day'}
           </h1>
           <p className="text-sm text-gray-500">{dayNames[adjustedDay]}</p>

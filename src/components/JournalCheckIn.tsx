@@ -95,7 +95,7 @@ export default function JournalCheckIn({ onSubmit }: JournalCheckInProps) {
               onClick={() => setMealType(mt.type)}
               className={`py-2 rounded-xl text-center transition-all ${
                 mealType === mt.type
-                  ? 'neu-pressed text-purple-600'
+                  ? 'neu-pressed text-amber-600'
                   : 'neu-btn text-gray-500'
               }`}
             >
@@ -151,7 +151,7 @@ export default function JournalCheckIn({ onSubmit }: JournalCheckInProps) {
       <button
         onClick={handleSubmit}
         disabled={!canSubmit}
-        className="w-full neu-btn-accent text-sm disabled:opacity-40 disabled:cursor-not-allowed"
+        className="w-full neu-btn-amber text-sm disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Submit Check-In
       </button>

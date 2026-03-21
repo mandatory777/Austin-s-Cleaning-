@@ -70,7 +70,7 @@ export default function RecoveryPage() {
   return (
     <div className="min-h-screen bg-[#e0e5ec] pb-28">
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
-        <h1 className="text-2xl font-bold text-gray-700">Recovery</h1>
+        <h1 className="text-2xl font-bold text-blue-700">Recovery</h1>
 
         {/* Recovery gauge */}
         {todayRecovery && (
@@ -87,7 +87,7 @@ export default function RecoveryPage() {
             {/* Sleep hours */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Sleep: <span className="text-purple-500 font-bold">{sleepHours}h</span>
+                Sleep: <span className="text-blue-500 font-bold">{sleepHours}h</span>
               </label>
               <input
                 type="number"
@@ -195,7 +195,7 @@ export default function RecoveryPage() {
 
             <button
               onClick={handleSubmit}
-              className="neu-btn-accent w-full py-3 font-medium"
+              className="neu-btn-blue w-full py-3 font-medium"
             >
               Log Recovery
             </button>
