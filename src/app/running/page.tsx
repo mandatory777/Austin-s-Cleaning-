@@ -21,8 +21,6 @@ export default function RunningPage() {
   const { profile, getTodayDate } = useApp();
   const [runs, setRuns] = useState<RunLog[]>([]);
   const [goal, setGoal] = useState<RunningGoal | null>(null);
-  const [showLog, setShowLog] = useState(false);
-  const [showGoalPicker, setShowGoalPicker] = useState(false);
   const [activeTab, setActiveTab] = useState<'log' | 'history' | 'plan' | 'stats'>('log');
 
   // Log form state
@@ -101,7 +99,6 @@ export default function RunningPage() {
     setSeconds('');
     setRunType('easy');
     setNotes('');
-    setShowLog(false);
     setActiveTab('history');
   };
 
@@ -114,7 +111,6 @@ export default function RunningPage() {
     };
     setGoal(newGoal);
     setStored('pulse_running_goal', newGoal);
-    setShowGoalPicker(false);
   };
 
   // Run history grouped by date

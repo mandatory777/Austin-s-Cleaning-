@@ -8,7 +8,6 @@ import { getStored, setStored } from '@/lib/storage';
 function PetFace({ type, mood }: { type: PetState['type']; mood: PetState['mood'] }) {
   const isHappy = mood === 'thriving' || mood === 'happy';
   const isOkay = mood === 'okay';
-  const isSad = mood === 'thirsty' || mood === 'parched';
 
   // Eye style based on mood
   const eyeStyle = isHappy ? 'happy' : isOkay ? 'neutral' : 'sad';
