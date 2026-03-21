@@ -177,6 +177,33 @@ input {
     border-radius: 50%;
     box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
   }
+
+  /* Colored flat cards */
+  .neu-flat-rose {
+    background: linear-gradient(135deg, #e0e5ec 0%, #fce4ec 100%);
+    border-radius: 1rem;
+    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+  }
+  .neu-flat-green {
+    background: linear-gradient(135deg, #e0e5ec 0%, #d1fae5 100%);
+    border-radius: 1rem;
+    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+  }
+  .neu-flat-blue {
+    background: linear-gradient(135deg, #e0e5ec 0%, #dbeafe 100%);
+    border-radius: 1rem;
+    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+  }
+  .neu-flat-amber {
+    background: linear-gradient(135deg, #e0e5ec 0%, #fef3c7 100%);
+    border-radius: 1rem;
+    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+  }
+  .neu-flat-purple {
+    background: linear-gradient(135deg, #e0e5ec 0%, #ede9fe 100%);
+    border-radius: 1rem;
+    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+  }
 }
 
 /* Custom range slider */

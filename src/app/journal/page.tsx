@@ -59,7 +59,9 @@ export default function JournalPage() {
   return (
     <div className="min-h-screen bg-[#e0e5ec] pb-28">
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
-        <h1 className="text-2xl font-bold text-amber-700">Food Journal</h1>
+        <div className="bg-gradient-to-r from-amber-500/10 to-orange-500/10 rounded-2xl p-5 -mx-4 px-4">
+          <h1 className="text-2xl font-bold text-amber-700">Food Journal</h1>
+        </div>
 
         {/* Check-in form */}
         <JournalCheckIn onSubmit={handleSubmit} />
@@ -88,7 +90,7 @@ export default function JournalPage() {
                   {topFoods.map(food => (
                     <div
                       key={food.foodName}
-                      className="neu-flat px-4 py-2.5"
+                      className="neu-flat px-4 py-2.5 bg-green-50"
                     >
                       <p className="text-sm font-medium text-green-600 capitalize">{food.foodName}</p>
                       <p className="text-xs text-gray-500">
@@ -111,7 +113,7 @@ export default function JournalPage() {
                     .map(food => (
                       <div
                         key={food.foodName}
-                        className="neu-flat px-4 py-2.5"
+                        className="neu-flat px-4 py-2.5 bg-red-50"
                       >
                         <p className="text-sm font-medium text-red-600 capitalize">{food.foodName}</p>
                         <p className="text-xs text-gray-500">

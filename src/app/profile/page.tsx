@@ -146,7 +146,9 @@ export default function ProfilePage() {
   return (
     <div className="min-h-screen bg-[#e0e5ec] pb-28">
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
-        <h1 className="text-2xl font-bold text-gray-700">Profile</h1>
+        <div className="bg-gradient-to-r from-violet-500/10 to-purple-500/10 rounded-2xl p-5 -mx-4 px-4">
+          <h1 className="text-2xl font-bold text-gray-700">Profile</h1>
+        </div>
 
         {/* Profile card */}
         <div className="neu-flat p-6 space-y-4">
@@ -320,7 +322,7 @@ export default function ProfilePage() {
         </div>
 
         {/* TDEE & Macros */}
-        <div className="neu-flat p-5">
+        <div className="neu-flat-purple p-5">
           <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
             Daily Targets
           </h2>

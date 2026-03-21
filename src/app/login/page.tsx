@@ -102,7 +102,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#e0e5ec] flex flex-col items-center justify-center px-4">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4" style={{ background: 'radial-gradient(ellipse at top, #ede9fe 0%, #e0e5ec 50%, #e0e5ec 100%)' }}>
       <div className="w-full max-w-sm space-y-8">
         {/* Logo / Branding */}
         <div className="text-center space-y-3">

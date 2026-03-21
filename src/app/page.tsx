@@ -53,7 +53,7 @@ export default function DashboardPage() {
     <div className="min-h-screen bg-[#e0e5ec] pb-28">
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
         {/* Greeting */}
-        <div>
+        <div className="bg-gradient-to-r from-violet-500/10 to-fuchsia-500/10 rounded-2xl p-5 -mx-4 px-4">
           <h1 className="text-2xl font-bold text-gray-700">
             {getGreeting()}, {profile.name}
           </h1>
@@ -66,7 +66,7 @@ export default function DashboardPage() {
         {gapAnalysis && <LifeHappensBanner gap={gapAnalysis} onDismiss={() => updateLastActive()} />}
 
         {/* Macro Rings */}
-        <div className="neu-flat p-5">
+        <div className="neu-flat-purple p-5">
           <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
             Today&apos;s Nutrition
           </h2>
@@ -104,7 +104,7 @@ export default function DashboardPage() {
 
         {/* Today's Workout */}
         <Link href="/workouts" className="block">
-          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ borderLeft: '4px solid #f43f5e' }}>
+          <div className="neu-flat-rose p-5 hover:shadow-none transition-shadow" style={{ borderLeft: '4px solid #f43f5e' }}>
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                 Today&apos;s Workout
@@ -142,7 +142,7 @@ export default function DashboardPage() {
 
         {/* Recovery Score */}
         <Link href="/recovery" className="block">
-          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ borderLeft: '4px solid #3b82f6' }}>
+          <div className="neu-flat-blue p-5 hover:shadow-none transition-shadow" style={{ borderLeft: '4px solid #3b82f6' }}>
             <div className="flex items-center justify-between mb-2">
               <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
                 Recovery
@@ -179,7 +179,7 @@ export default function DashboardPage() {
 
         {/* Journal Prompt */}
         <Link href="/journal" className="block">
-          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ background: 'linear-gradient(135deg, #e0e5ec 60%, #fde68a 150%)' }}>
+          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ background: 'linear-gradient(135deg, #fef3c7 0%, #fde68a 100%)' }}>
             <div className="flex items-center justify-between">
               <div>
                 <h2 className="text-sm font-semibold text-amber-500 uppercase tracking-wide">

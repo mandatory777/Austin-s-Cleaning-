@@ -74,7 +74,7 @@ export default function WorkoutsPage() {
     <div className="min-h-screen bg-[#e0e5ec] pb-28">
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
         {/* Header */}
-        <div>
+        <div className="bg-gradient-to-r from-rose-500/10 to-pink-500/10 rounded-2xl p-5 -mx-4 px-4">
           <h1 className="text-2xl font-bold text-rose-700">
             {todayWorkout ? todayWorkout.name : 'Rest Day'}
           </h1>
@@ -86,10 +86,10 @@ export default function WorkoutsPage() {
           <div className="flex items-center gap-3">
             <span className={`neu-badge ${
               todayWorkout.intensity === 'light'
-                ? 'text-green-600'
+                ? 'text-green-600 bg-green-100'
                 : todayWorkout.intensity === 'moderate'
-                ? 'text-yellow-600'
-                : 'text-red-600'
+                ? 'text-yellow-600 bg-yellow-100'
+                : 'text-red-600 bg-red-100'
             }`}>
               {todayWorkout.intensity.charAt(0).toUpperCase() + todayWorkout.intensity.slice(1)} Intensity
             </span>
@@ -173,7 +173,7 @@ export default function WorkoutsPage() {
         )}
 
         {/* Weekly Schedule */}
-        <div className="neu-flat p-5">
+        <div className="neu-flat-rose p-5">
           <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-4">
             Weekly Schedule
           </h2>

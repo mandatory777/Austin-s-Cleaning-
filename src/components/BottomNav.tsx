@@ -93,6 +93,7 @@ export default function BottomNav() {
             >
               {tab.icon}
               <span className="text-[10px] font-medium">{tab.label}</span>
+              {isActive && <span className="w-1 h-1 rounded-full mt-0.5" style={{ background: 'currentColor' }} />}
             </Link>
           );
         })}

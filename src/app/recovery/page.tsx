@@ -70,11 +70,13 @@ export default function RecoveryPage() {
   return (
     <div className="min-h-screen bg-[#e0e5ec] pb-28">
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
-        <h1 className="text-2xl font-bold text-blue-700">Recovery</h1>
+        <div className="bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-2xl p-5 -mx-4 px-4">
+          <h1 className="text-2xl font-bold text-blue-700">Recovery</h1>
+        </div>
 
         {/* Recovery gauge */}
         {todayRecovery && (
-          <div className="neu-flat p-6">
+          <div className="neu-flat-blue p-6">
             <RecoveryGauge score={todayRecovery} />
           </div>
         )}
@@ -216,7 +218,7 @@ export default function RecoveryPage() {
         )}
 
         {/* 7-day history */}
-        <div className="neu-flat p-5">
+        <div className="neu-flat-blue p-5">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
               Last 7 Days

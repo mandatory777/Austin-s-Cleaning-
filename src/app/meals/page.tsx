@@ -59,17 +59,19 @@ export default function MealsPage() {
     <div className="min-h-screen bg-[#e0e5ec] pb-28">
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
         {/* Header */}
-        <div className="flex items-center justify-between">
-          <div>
-            <h1 className="text-2xl font-bold text-emerald-700">Today&apos;s Meals</h1>
-            <p className="text-sm text-gray-500">{todayStr}</p>
+        <div className="bg-gradient-to-r from-emerald-500/10 to-teal-500/10 rounded-2xl p-5 -mx-4 px-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <h1 className="text-2xl font-bold text-emerald-700">Today&apos;s Meals</h1>
+              <p className="text-sm text-gray-500">{todayStr}</p>
+            </div>
+            <Link
+              href="/meals/shopping"
+              className="neu-btn-green text-sm py-2 px-4"
+            >
+              Shopping List
+            </Link>
           </div>
-          <Link
-            href="/meals/shopping"
-            className="neu-btn-green text-sm py-2 px-4"
-          >
-            Shopping List
-          </Link>
         </div>
 
         {/* Photo Meal Logger */}
@@ -91,21 +93,21 @@ export default function MealsPage() {
         )}
 
         {/* Macro totals summary */}
-        <div className="neu-flat p-4">
+        <div className="neu-flat-green p-4">
           <div className="grid grid-cols-4 gap-3 text-center">
-            <div>
+            <div className="bg-rose-50 rounded-xl p-2">
               <p className="text-lg font-bold text-rose-500">{Math.round(todayMealPlan.totalCalories)}</p>
               <p className="text-xs text-gray-500">kcal</p>
             </div>
-            <div>
+            <div className="bg-violet-50 rounded-xl p-2">
               <p className="text-lg font-bold text-violet-500">{Math.round(todayMealPlan.totalProtein)}g</p>
               <p className="text-xs text-gray-500">protein</p>
             </div>
-            <div>
+            <div className="bg-amber-50 rounded-xl p-2">
               <p className="text-lg font-bold text-amber-500">{Math.round(todayMealPlan.totalCarbs)}g</p>
               <p className="text-xs text-gray-500">carbs</p>
             </div>
-            <div>
+            <div className="bg-emerald-50 rounded-xl p-2">
               <p className="text-lg font-bold text-emerald-500">{Math.round(todayMealPlan.totalFat)}g</p>
               <p className="text-xs text-gray-500">fat</p>
             </div>

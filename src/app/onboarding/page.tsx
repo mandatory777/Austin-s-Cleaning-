@@ -150,7 +150,7 @@ export default function OnboardingPage() {
           <div className="neu-pressed w-full h-3 !rounded-full">
             <div
               className="h-3 rounded-full transition-all duration-500 ease-out"
-              style={{ width: `${(step / TOTAL_STEPS) * 100}%`, background: 'linear-gradient(145deg, #c084fc, #a78bfa)' }}
+              style={{ width: `${(step / TOTAL_STEPS) * 100}%`, background: 'linear-gradient(90deg, #8b5cf6, #ec4899)' }}
             />
           </div>
         </div>
@@ -277,6 +277,13 @@ export default function OnboardingPage() {
                       ? 'neu-pressed'
                       : 'neu-flat'
                   }`}
+                  style={goal === g ? {
+                    background: g === 'weight_loss'
+                      ? 'linear-gradient(135deg, #e0e5ec 0%, #fce4ec 100%)'
+                      : g === 'muscle_gain'
+                      ? 'linear-gradient(135deg, #e0e5ec 0%, #dbeafe 100%)'
+                      : 'linear-gradient(135deg, #e0e5ec 0%, #d1fae5 100%)'
+                  } : {}}
                 >
                   <div className="flex items-start gap-4">
                     <span className="text-3xl">{goalIcons[g]}</span>
