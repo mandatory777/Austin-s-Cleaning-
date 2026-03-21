@@ -3,6 +3,8 @@
 import { useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import MealCard from '@/components/MealCard';
+import MealPhotoLogger from '@/components/MealPhotoLogger';
+import { FoodItem } from '@/lib/foods';
 import Link from 'next/link';
 
 export default function MealsPage() {
@@ -16,6 +18,13 @@ export default function MealsPage() {
   } = useApp();
 
   const [pantryInput, setPantryInput] = useState('');
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handlePhotoLog = (foods: { food: FoodItem; servings: number }[], photoUrl: string) => {
+    foods.forEach(({ food, servings }) => {
+      logMeal(`photo-${Date.now()}-${food.id}`, food.id, servings);
+    });
+  };
 
   if (!profile || !todayMealPlan) {
     return (
@@ -62,6 +71,9 @@ export default function MealsPage() {
             Shopping List
           </Link>
         </div>
+
+        {/* Photo Meal Logger */}
+        <MealPhotoLogger onLog={handlePhotoLog} />
 
         {/* Adjusted macros info */}
         {macrosAdjusted && (

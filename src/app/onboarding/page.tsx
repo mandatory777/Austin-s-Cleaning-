@@ -31,8 +31,9 @@ export default function OnboardingPage() {
   const [sex, setSex] = useState<Sex>('female');
 
   // Step 2
-  const [weight, setWeight] = useState<number>(65);
-  const [height, setHeight] = useState<number>(165);
+  const [weight, setWeight] = useState<number>(143);
+  const [heightFeet, setHeightFeet] = useState<number>(5);
+  const [heightInches, setHeightInches] = useState<number>(5);
 
   // Step 3
   const [goal, setGoal] = useState<Goal>('wellness');
@@ -51,14 +52,15 @@ export default function OnboardingPage() {
   const [memberName, setMemberName] = useState('');
   const [memberAge, setMemberAge] = useState<number>(25);
   const [memberSex, setMemberSex] = useState<Sex>('female');
-  const [memberWeight, setMemberWeight] = useState<number>(65);
-  const [memberHeight, setMemberHeight] = useState<number>(165);
+  const [memberWeight, setMemberWeight] = useState<number>(143);
+  const [memberHeightFeet, setMemberHeightFeet] = useState<number>(5);
+  const [memberHeightInches, setMemberHeightInches] = useState<number>(5);
   const [memberGoal, setMemberGoal] = useState<Goal>('wellness');
 
   const canProceed = () => {
     switch (step) {
       case 1: return name.trim().length > 0 && age > 0;
-      case 2: return weight > 0 && height > 0;
+      case 2: return weight > 0 && heightFeet > 0;
       case 3: return true;
       case 4: return true;
       case 5: return true;
@@ -69,7 +71,9 @@ export default function OnboardingPage() {
 
   const handleAddMember = () => {
     if (!memberName.trim()) return;
-    const bmr = calculateBMR(memberSex, memberWeight, memberHeight, memberAge);
+    const memberWeightKg = memberWeight / 2.205;
+    const memberHeightCm = (memberHeightFeet * 12 + memberHeightInches) * 2.54;
+    const bmr = calculateBMR(memberSex, memberWeightKg, memberHeightCm, memberAge);
     const tdee = calculateTDEE(bmr, 'moderate');
     const macros = calculateMacros(tdee, memberGoal);
     const member: HouseholdMember = {
@@ -77,8 +81,8 @@ export default function OnboardingPage() {
       name: memberName.trim(),
       age: memberAge,
       sex: memberSex,
-      weight: memberWeight,
-      height: memberHeight,
+      weight: memberWeightKg,
+      height: memberHeightCm,
       goal: memberGoal,
       activityLevel: 'moderate',
       tdee,
@@ -88,22 +92,25 @@ export default function OnboardingPage() {
     setMemberName('');
     setMemberAge(25);
     setMemberSex('female');
-    setMemberWeight(65);
-    setMemberHeight(165);
+    setMemberWeight(143);
+    setMemberHeightFeet(5);
+    setMemberHeightInches(5);
     setMemberGoal('wellness');
     setShowMemberForm(false);
   };
 
   const handleFinish = () => {
-    const bmr = calculateBMR(sex, weight, height, age);
+    const weightKg = weight / 2.205;
+    const heightCm = (heightFeet * 12 + heightInches) * 2.54;
+    const bmr = calculateBMR(sex, weightKg, heightCm, age);
     const tdee = calculateTDEE(bmr, activityLevel);
     const macros = calculateMacros(tdee, goal);
     const profile: UserProfile = {
       name: name.trim(),
       age,
       sex,
-      weight,
-      height,
+      weight: weightKg,
+      height: heightCm,
       goal,
       activityLevel,
       fitnessExperience,
@@ -211,27 +218,43 @@ export default function OnboardingPage() {
             </div>
             <div className="neu-flat p-6 space-y-5">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Weight (kg)</label>
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Weight (lbs)</label>
                 <input
                   type="number"
                   value={weight}
                   onChange={e => setWeight(parseFloat(e.target.value) || 0)}
-                  min={30}
-                  max={300}
-                  step={0.5}
+                  min={66}
+                  max={660}
+                  step={1}
                   className="neu-input"
                 />
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Height (cm)</label>
-                <input
-                  type="number"
-                  value={height}
-                  onChange={e => setHeight(parseFloat(e.target.value) || 0)}
-                  min={100}
-                  max={250}
-                  className="neu-input"
-                />
+                <label className="block text-sm font-medium text-gray-700 mb-1.5">Height</label>
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs text-gray-400 mb-1">Feet</label>
+                    <input
+                      type="number"
+                      value={heightFeet}
+                      onChange={e => setHeightFeet(parseInt(e.target.value) || 0)}
+                      min={3}
+                      max={8}
+                      className="neu-input"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-400 mb-1">Inches</label>
+                    <input
+                      type="number"
+                      value={heightInches}
+                      onChange={e => setHeightInches(parseInt(e.target.value) || 0)}
+                      min={0}
+                      max={11}
+                      className="neu-input"
+                    />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -395,7 +418,7 @@ export default function OnboardingPage() {
                     <div>
                       <p className="font-medium text-gray-700">{m.name}</p>
                       <p className="text-sm text-gray-500">
-                        {m.age}y, {m.weight}kg — {GOAL_LABELS[m.goal]}
+                        {m.age}y, {Math.round(m.weight * 2.205)}lbs — {GOAL_LABELS[m.goal]}
                       </p>
                     </div>
                     <button
@@ -449,24 +472,36 @@ export default function OnboardingPage() {
                     </div>
                   </div>
                 </div>
-                <div className="grid grid-cols-2 gap-3">
-                  <div>
-                    <label className="block text-xs text-gray-400 mb-1">Weight (kg)</label>
-                    <input
-                      type="number"
-                      value={memberWeight}
-                      onChange={e => setMemberWeight(parseFloat(e.target.value) || 0)}
-                      className="neu-input text-sm"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-xs text-gray-400 mb-1">Height (cm)</label>
-                    <input
-                      type="number"
-                      value={memberHeight}
-                      onChange={e => setMemberHeight(parseFloat(e.target.value) || 0)}
-                      className="neu-input text-sm"
-                    />
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1">Weight (lbs)</label>
+                  <input
+                    type="number"
+                    value={memberWeight}
+                    onChange={e => setMemberWeight(parseFloat(e.target.value) || 0)}
+                    className="neu-input text-sm"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs text-gray-400 mb-1">Height</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block text-xs text-gray-400 mb-1">Feet</label>
+                      <input
+                        type="number"
+                        value={memberHeightFeet}
+                        onChange={e => setMemberHeightFeet(parseInt(e.target.value) || 0)}
+                        className="neu-input text-sm"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-xs text-gray-400 mb-1">Inches</label>
+                      <input
+                        type="number"
+                        value={memberHeightInches}
+                        onChange={e => setMemberHeightInches(parseInt(e.target.value) || 0)}
+                        className="neu-input text-sm"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div>
