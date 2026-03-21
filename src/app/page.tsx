@@ -17,6 +17,7 @@ function getGreeting(): string {
 export default function DashboardPage() {
   const router = useRouter();
   const {
+    loading,
     profile,
     gapAnalysis,
     todayMealPlan,
@@ -26,14 +27,15 @@ export default function DashboardPage() {
   } = useApp();
 
   useEffect(() => {
+    if (loading) return; // Wait for localStorage to load first
     if (!profile) {
       router.replace('/onboarding');
     } else {
       updateLastActive();
     }
-  }, [profile, router, updateLastActive]);
+  }, [loading, profile, router, updateLastActive]);
 
-  if (!profile) return null;
+  if (loading || !profile) return null;
 
   const macroTargets = profile.macros;
   // Count logged meals for consumed progress

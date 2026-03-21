@@ -24,6 +24,7 @@ interface AppState {
 }
 
 interface AppContextType extends AppState {
+  loading: boolean;
   saveProfile: (profile: UserProfile) => void;
   regenerateMealPlan: (pantryItems?: string[]) => void;
   swapMealInPlan: (mealId: string) => void;
@@ -53,6 +54,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [mealLogs, setMealLogs] = useState<MealLog[]>([]);
   const [gapAnalysis, setGapAnalysis] = useState<GapAnalysis | null>(null);
   const [adjustedMacros, setAdjustedMacros] = useState<Macros | null>(null);
+  const [loading, setLoading] = useState(true);
 
   const getTodayDate = useCallback(() => new Date().toISOString().split('T')[0], []);
 
@@ -95,6 +97,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setRecoveryEntries(getStored<RecoveryEntry[]>('pulse_recovery', []));
     setJournalEntries(getStored<JournalEntry[]>('pulse_journal', []));
     setMealLogs(getStored<MealLog[]>('pulse_meal_logs', []));
+    setLoading(false);
   }, [getTodayDate]);
 
   const saveProfile = useCallback((p: UserProfile) => {
@@ -166,6 +169,11 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   const updateLastActive = useCallback(() => {
     if (!profile) return;
+    // Avoid infinite re-render: skip if already updated today
+    if (profile.lastActiveDate === getTodayDate()) {
+      setGapAnalysis(null);
+      return;
+    }
     const updated = { ...profile, lastActiveDate: getTodayDate() };
     setProfile(updated);
     setStored('pulse_profile', updated);
@@ -184,7 +192,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <AppContext.Provider value={{
-      profile, todayMealPlan, weeklyWorkouts, todayWorkout, workoutSessions,
+      loading, profile, todayMealPlan, weeklyWorkouts, todayWorkout, workoutSessions,
       recoveryEntries, todayRecovery, journalEntries, mealLogs, gapAnalysis, adjustedMacros,
       saveProfile, regenerateMealPlan, swapMealInPlan, logMeal, logWorkout,
       logRecovery, logJournal, updateLastActive, getTodayDate,
