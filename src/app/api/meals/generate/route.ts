@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
       ? `\nDietary restrictions: ${preferences.dietaryRestrictions.join(', ')}`
       : '';
 
-    const prompt = `You are an expert sports nutritionist and chef creating a personalized daily meal plan.
+    const prompt = `You are an expert sports nutritionist and professional chef creating an in-depth, personalized daily meal plan with restaurant-quality detail.
 
 USER PROFILE:
 - Name: ${profile.name}
@@ -61,12 +61,17 @@ Create a complete daily meal plan with 5 meals distributed as:
 
 REQUIREMENTS:
 - Each recipe MUST have real, specific ingredients with exact amounts
-- Each recipe MUST have clear step-by-step cooking instructions that anyone can follow
-- Macros for each recipe must be realistic and add up close to daily targets
+- Instructions must be DETAILED step-by-step with timing for each step and optional pro tips
+- Include fiber, sugar, and sodium in macros for each recipe
+- Provide 2-3 ingredient substitutions per recipe (with macro/taste impact notes)
+- Include 2-3 professional chef tips per recipe (technique, flavor, texture advice)
+- Include a serving suggestion (how to plate, what to pair with)
+- Include a nutrition note explaining WHY this recipe's macro profile matters for the user's goal
+- Macros must be realistic and add up close to daily targets
 - Use commonly available grocery store ingredients
 - Vary the cuisines and cooking methods across meals
-- Make recipes practical (not overly complex for weeknight cooking)
-- Snacks should be simple but satisfying
+- Make main meals restaurant-quality but achievable at home
+- Snacks should be creative but simple
 
 Return ONLY valid JSON matching this exact schema (no markdown, no code blocks, just raw JSON):
 {
@@ -75,8 +80,8 @@ Return ONLY valid JSON matching this exact schema (no markdown, no code blocks, 
       "slotType": "breakfast",
       "slotLabel": "Breakfast",
       "name": "Recipe Name",
-      "description": "1-2 sentence appetizing description",
-      "cuisineType": "e.g. American, Mediterranean, Asian",
+      "description": "2-3 sentence appetizing, detailed description that makes you want to cook it",
+      "cuisineType": "e.g. American, Mediterranean, Asian, Mexican, Japanese",
       "prepTime": 10,
       "cookTime": 15,
       "servings": 1,
@@ -85,12 +90,20 @@ Return ONLY valid JSON matching this exact schema (no markdown, no code blocks, 
         { "item": "ingredient name", "amount": "2", "unit": "cups", "category": "produce" }
       ],
       "instructions": [
-        "Step 1 instruction",
-        "Step 2 instruction"
+        { "step": "Detailed instruction for this step", "duration": "3-4 minutes", "tip": "Optional pro tip for this step" }
       ],
-      "macros": { "calories": 450, "protein": 30, "carbs": 50, "fat": 12 },
-      "tags": ["high-protein", "quick"],
-      "goalTip": "Why this recipe supports the user's specific goal"
+      "macros": { "calories": 450, "protein": 30, "carbs": 50, "fat": 12, "fiber": 6, "sugar": 8, "sodium": 380 },
+      "tags": ["high-protein", "quick", "meal-prep-friendly"],
+      "goalTip": "Why this recipe supports the user's specific goal",
+      "nutritionNotes": "Detailed explanation of the macro/micro profile and how it supports the goal — mention specific nutrients",
+      "substitutions": [
+        { "original": "chicken breast", "alternative": "firm tofu", "note": "Similar protein, adds isoflavones. Reduce cook time by 2 min." }
+      ],
+      "chefTips": [
+        "Pat protein dry before searing for a better crust",
+        "Let it rest 3 minutes after cooking to redistribute juices"
+      ],
+      "servingSuggestion": "Serve on a warm plate with a squeeze of lemon and fresh herbs on top"
     }
   ]
 }
@@ -98,11 +111,12 @@ Return ONLY valid JSON matching this exact schema (no markdown, no code blocks, 
 The slotType values must be exactly: "breakfast", "snack_am", "lunch", "snack_pm", "dinner"
 The slotLabel values: "Breakfast", "Morning Snack", "Lunch", "Afternoon Snack", "Dinner"
 Category values for ingredients: "produce", "protein", "dairy", "grains", "pantry", "spices", "oils", "frozen"
-Difficulty: "easy", "medium", or "hard"`;
+Difficulty: "easy", "medium", or "hard"
+Tags should include relevant ones like: "high-protein", "low-carb", "high-fiber", "anti-inflammatory", "quick", "meal-prep-friendly", "one-pan", "no-cook", "budget-friendly", "comfort-food"`;
 
     const message = await client.messages.create({
       model: 'claude-sonnet-4-20250514',
-      max_tokens: 4096,
+      max_tokens: 8192,
       messages: [{ role: 'user', content: prompt }],
     });
 

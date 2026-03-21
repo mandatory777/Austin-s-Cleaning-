@@ -19,16 +19,35 @@ export interface AIRecipe {
   servings: number;
   difficulty: 'easy' | 'medium' | 'hard';
   ingredients: AIIngredient[];
-  instructions: string[];
+  instructions: InstructionStep[];
   macros: {
     calories: number;
     protein: number;
     carbs: number;
     fat: number;
+    fiber?: number;
+    sugar?: number;
+    sodium?: number; // mg
   };
   tags: string[];
   goalTip: string; // why this recipe fits the user's goal
+  nutritionNotes: string; // detailed breakdown of why these macros matter
+  substitutions: Substitution[]; // ingredient swap suggestions
+  chefTips: string[]; // pro cooking tips
+  servingSuggestion: string; // plating / pairing ideas
   logged?: boolean;
+}
+
+export interface InstructionStep {
+  step: string;
+  duration?: string; // e.g. "3-4 minutes"
+  tip?: string; // optional pro tip for this step
+}
+
+export interface Substitution {
+  original: string;
+  alternative: string;
+  note: string; // how it affects macros/taste
 }
 
 export interface AIMealPlan {
