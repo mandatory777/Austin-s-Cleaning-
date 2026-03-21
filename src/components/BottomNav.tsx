@@ -54,6 +54,20 @@ const tabs = [
     ),
   },
   {
+    label: 'Running',
+    href: '/running',
+    activeColor: 'text-teal-500',
+    icon: (
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="17" cy="4" r="2" />
+        <path d="M15.59 13.51l-4.09 4.09a2 2 0 0 1-2.83 0L7 16" />
+        <path d="M9.5 5.5L14 10l-3.5 3.5" />
+        <path d="M6.5 8.5L3 12" />
+        <path d="M14 10l4.5-1" />
+      </svg>
+    ),
+  },
+  {
     label: 'Journal',
     href: '/journal',
     activeColor: 'text-amber-500',
@@ -85,7 +99,7 @@ export default function BottomNav() {
             <Link
               key={tab.href}
               href={tab.href}
-              className={`flex flex-col items-center justify-center gap-0.5 px-3 py-1 rounded-xl transition-all ${
+              className={`flex flex-col items-center justify-center gap-0.5 px-2 py-1 rounded-xl transition-all ${
                 isActive
                   ? `${tab.activeColor} neu-pressed`
                   : 'text-gray-400 hover:text-gray-500'

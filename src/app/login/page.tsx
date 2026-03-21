@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { getStored, setStored } from '@/lib/storage';
 
@@ -29,6 +29,19 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [showPassword, setShowPassword] = useState(false);
 
+  // If already logged in, redirect to dashboard
+  // Also pre-fill email from last session so users remember their account
+  useEffect(() => {
+    const session = getStored<{ loggedIn: boolean; email?: string } | null>('pulse_session', null);
+    if (session?.loggedIn) {
+      router.replace('/');
+      return;
+    }
+    if (session?.email) {
+      setEmail(session.email);
+    }
+  }, [router]);
+
   const validateEmail = (e: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e);
 
   const handleSubmit = () => {
@@ -51,14 +64,22 @@ export default function LoginPage() {
 
     const hash = simpleHash(password);
 
+    // Load all accounts (support multiple accounts)
+    const accounts = getStored<StoredAuth[]>('pulse_accounts', []);
+    // Migrate old single-account format if present
+    const legacyAuth = getStored<StoredAuth | null>('pulse_auth', null);
+    if (legacyAuth && !accounts.find(a => a.email === legacyAuth.email)) {
+      accounts.push(legacyAuth);
+      setStored('pulse_accounts', accounts);
+    }
+
     if (isSignUp) {
       if (password !== confirmPassword) {
         setError('Passwords do not match');
         return;
       }
 
-      const existing = getStored<StoredAuth | null>('pulse_auth', null);
-      if (existing && existing.email === email.toLowerCase()) {
+      if (accounts.find(a => a.email === email.toLowerCase())) {
         setError('An account with this email already exists');
         return;
       }
@@ -68,10 +89,12 @@ export default function LoginPage() {
         passwordHash: hash,
         createdAt: new Date().toISOString(),
       };
-      setStored('pulse_auth', auth);
+      accounts.push(auth);
+      setStored('pulse_accounts', accounts);
+      setStored('pulse_auth', auth); // keep for backward compat
       setStored('pulse_session', { loggedIn: true, email: email.toLowerCase() });
 
-      // Check if profile exists
+      // Check if profile exists for this email
       const profile = getStored('pulse_profile', null);
       if (profile) {
         router.replace('/');
@@ -79,13 +102,13 @@ export default function LoginPage() {
         router.replace('/onboarding');
       }
     } else {
-      const stored = getStored<StoredAuth | null>('pulse_auth', null);
-      if (!stored) {
+      const account = accounts.find(a => a.email === email.toLowerCase());
+      if (!account) {
         setError('No account found. Please sign up first.');
         return;
       }
 
-      if (stored.email !== email.toLowerCase() || stored.passwordHash !== hash) {
+      if (account.passwordHash !== hash) {
         setError('Invalid email or password');
         return;
       }

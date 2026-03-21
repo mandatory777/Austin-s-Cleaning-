@@ -6,6 +6,7 @@ import { useApp } from '@/contexts/AppContext';
 import { getStored } from '@/lib/storage';
 import LifeHappensBanner from '@/components/LifeHappensBanner';
 import MacroRing from '@/components/MacroRing';
+import VirtualPet from '@/components/VirtualPet';
 import Link from 'next/link';
 
 function getGreeting(): string {
@@ -102,6 +103,9 @@ export default function DashboardPage() {
           </div>
         </div>
 
+        {/* Virtual Pet - Hydration Buddy */}
+        <VirtualPet />
+
         {/* Today's Workout */}
         <Link href="/workouts" className="block">
           <div className="neu-flat-rose p-5 hover:shadow-none transition-shadow" style={{ borderLeft: '4px solid #f43f5e' }}>
@@ -137,6 +141,23 @@ export default function DashboardPage() {
             ) : (
               <p className="text-gray-400 text-sm">Rest day - enjoy your recovery!</p>
             )}
+          </div>
+        </Link>
+
+        {/* Running */}
+        <Link href="/running" className="block">
+          <div className="neu-flat p-5 hover:shadow-none transition-shadow" style={{ background: 'linear-gradient(135deg, #e0e5ec 0%, #ccfbf1 100%)', borderLeft: '4px solid #14b8a6' }}>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide">
+                Running
+              </h2>
+              <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </div>
+            <p className="text-gray-500 text-sm">
+              Track runs, set goals, beat your PRs 🏃
+            </p>
           </div>
         </Link>
 
