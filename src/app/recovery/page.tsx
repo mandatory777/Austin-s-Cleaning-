@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { RecoveryEntry, calculateRecoveryScore, getCyclePhase, getRecoveryTrend } from '@/lib/recovery';
 import RecoveryGauge from '@/components/RecoveryGauge';
+import PlaylistCard from '@/components/PlaylistCard';
+import { getPlaylistForRecovery } from '@/lib/playlists';
 
 export default function RecoveryPage() {
   const {
@@ -197,6 +199,19 @@ export default function RecoveryPage() {
             >
               Log Recovery
             </button>
+          </div>
+        )}
+
+        {/* Recovery Playlist */}
+        {todayRecovery && (
+          <div>
+            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+              Recovery Playlist
+            </h2>
+            <PlaylistCard
+              playlist={getPlaylistForRecovery(todayRecovery.total)}
+              compact
+            />
           </div>
         )}
 

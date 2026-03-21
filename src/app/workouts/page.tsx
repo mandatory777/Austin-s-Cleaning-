@@ -4,6 +4,8 @@ import { useState, useMemo } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import { WorkoutSession, ExerciseLog, getProgressiveOverload } from '@/lib/workouts';
 import WorkoutCard from '@/components/WorkoutCard';
+import PlaylistCard from '@/components/PlaylistCard';
+import { getPlaylistForWorkout } from '@/lib/playlists';
 
 export default function WorkoutsPage() {
   const {
@@ -154,6 +156,19 @@ export default function WorkoutsPage() {
             <p className="text-sm text-gray-500 mt-1">
               Take it easy today. Recovery is when your body gets stronger.
             </p>
+          </div>
+        )}
+
+        {/* Workout Playlist */}
+        {todayWorkout && !isCompleted && (
+          <div>
+            <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wide mb-3">
+              Workout Playlist
+            </h2>
+            <PlaylistCard
+              playlist={getPlaylistForWorkout(todayWorkout.intensity)}
+              compact
+            />
           </div>
         )}
 

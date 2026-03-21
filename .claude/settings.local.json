@@ -17,7 +17,8 @@
       "Bash(npm install:*)",
       "Bash(for f:*)",
       "Bash(do sed:*)",
-      "Bash(done)"
+      "Bash(done)",
+      "Bash(npx next:*)"
     ]
   }
 }

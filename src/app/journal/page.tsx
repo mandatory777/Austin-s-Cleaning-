@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo } from 'react';
+import { useMemo, useState } from 'react';
 import { useApp } from '@/contexts/AppContext';
 import {
   JournalEntry,
@@ -11,21 +11,30 @@ import {
   MOOD_EMOJIS,
   DIGESTION_EMOJIS,
 } from '@/lib/journal';
+import { getPlaylistForMood, Playlist } from '@/lib/playlists';
 import JournalCheckIn from '@/components/JournalCheckIn';
+import PlaylistCard from '@/components/PlaylistCard';
 
 export default function JournalPage() {
   const { profile, journalEntries, logJournal } = useApp();
+  const [currentPlaylist, setCurrentPlaylist] = useState<Playlist | null>(null);
 
   const correlations = useMemo(() => analyzeFoodCorrelations(journalEntries), [journalEntries]);
   const topFoods = useMemo(() => getTopFoods(correlations), [correlations]);
   const worstFoods = useMemo(() => getWorstFoods(correlations), [correlations]);
   const hasInsights = journalEntries.length >= 5;
 
-  const handleSubmit = (energy: 1 | 2 | 3, mood: 1 | 2 | 3, digestion: 1 | 2 | 3, foodNames: string[]) => {
+  const handleSubmit = (
+    energy: 1 | 2 | 3,
+    mood: 1 | 2 | 3,
+    digestion: 1 | 2 | 3,
+    foodNames: string[],
+    mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack'
+  ) => {
     const fullEntry: JournalEntry = {
       id: `journal-${Date.now()}`,
       date: new Date().toISOString().split('T')[0],
-      mealType: 'snack',
+      mealType,
       foodNames,
       energy,
       mood,
@@ -33,6 +42,10 @@ export default function JournalPage() {
       timestamp: new Date().toISOString(),
     };
     logJournal(fullEntry);
+
+    // Generate a mood-based playlist
+    const playlist = getPlaylistForMood(energy, mood);
+    setCurrentPlaylist(playlist);
   };
 
   if (!profile) {
@@ -50,6 +63,16 @@ export default function JournalPage() {
 
         {/* Check-in form */}
         <JournalCheckIn onSubmit={handleSubmit} />
+
+        {/* Mood Playlist - shows after check-in */}
+        {currentPlaylist && (
+          <div>
+            <h2 className="text-lg font-bold text-gray-700 mb-3">
+              Your Mood Playlist
+            </h2>
+            <PlaylistCard playlist={currentPlaylist} />
+          </div>
+        )}
 
         {/* Food Insights */}
         {hasInsights && (
@@ -154,7 +177,7 @@ export default function JournalPage() {
 
         {journalEntries.length === 0 && (
           <div className="neu-flat p-8 text-center">
-            <div className="text-4xl mb-3">&#128221;</div>
+            <div className="text-4xl mb-3">{'\u{1F4DD}'}</div>
             <h3 className="text-lg font-bold text-gray-700">Start Your Journal</h3>
             <p className="text-sm text-gray-500 mt-1">
               Track how foods make you feel. After 5 entries, you&apos;ll start seeing personalized insights.

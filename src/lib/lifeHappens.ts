@@ -61,6 +61,10 @@ export function estimateMissedMeals(
     if (!dailyTotals[log.date]) {
       dailyTotals[log.date] = { calories: 0, protein: 0 };
     }
+    // Note: MealLog doesn't store calories directly, so we estimate from servings
+    // Each serving is roughly 300-400 calories on average
+    dailyTotals[log.date].calories += log.servings * 350;
+    dailyTotals[log.date].protein += log.servings * 25;
   }
 
   const days = Object.values(dailyTotals);

@@ -80,9 +80,10 @@ function pickFoodForSlot(
 }
 
 let seedCounter = 0;
+let dateSeed = '';
 function seededRandom(seed: string): number {
   let hash = 0;
-  const s = seed + (seedCounter++);
+  const s = dateSeed + seed + (seedCounter++);
   for (let i = 0; i < s.length; i++) {
     const chr = s.charCodeAt(i);
     hash = ((hash << 5) - hash) + chr;
@@ -97,6 +98,7 @@ export function generateMealPlan(
   pantryItems?: string[]
 ): DayMealPlan {
   seedCounter = 0;
+  dateSeed = date;
   const slots: MealSlot['type'][] = ['breakfast', 'snack_am', 'lunch', 'snack_pm', 'dinner'];
   const usedFoodIds = new Set<string>();
   const meals: MealSlot[] = slots.map((slotType, i) => {

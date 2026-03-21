@@ -7,11 +7,20 @@ interface JournalCheckInProps {
     energy: 1 | 2 | 3,
     mood: 1 | 2 | 3,
     digestion: 1 | 2 | 3,
-    foodNames: string[]
+    foodNames: string[],
+    mealType: 'breakfast' | 'lunch' | 'dinner' | 'snack'
   ) => void;
 }
 
 type Rating = 1 | 2 | 3;
+type MealType = 'breakfast' | 'lunch' | 'dinner' | 'snack';
+
+const MEAL_TYPES: { type: MealType; label: string; emoji: string }[] = [
+  { type: 'breakfast', label: 'Breakfast', emoji: '\u{1F373}' },
+  { type: 'lunch', label: 'Lunch', emoji: '\u{1F96A}' },
+  { type: 'dinner', label: 'Dinner', emoji: '\u{1F35D}' },
+  { type: 'snack', label: 'Snack', emoji: '\u{1F34E}' },
+];
 
 const ROWS: { label: string; emojis: [string, string, string]; key: string }[] = [
   { label: 'Energy', emojis: ['\u{1F50B}', '\u26A1', '\u{1F680}'], key: 'energy' },
@@ -24,6 +33,8 @@ export default function JournalCheckIn({ onSubmit }: JournalCheckInProps) {
   const [mood, setMood] = useState<Rating | null>(null);
   const [digestion, setDigestion] = useState<Rating | null>(null);
   const [foodText, setFoodText] = useState('');
+  const [mealType, setMealType] = useState<MealType>('lunch');
+  const [submitted, setSubmitted] = useState(false);
 
   const setters: Record<string, (v: Rating) => void> = {
     energy: setEnergy,
@@ -45,18 +56,55 @@ export default function JournalCheckIn({ onSubmit }: JournalCheckInProps) {
       .split(',')
       .map((s) => s.trim())
       .filter(Boolean);
-    onSubmit(energy!, mood!, digestion!, foodNames);
-    setEnergy(null);
-    setMood(null);
-    setDigestion(null);
-    setFoodText('');
+    onSubmit(energy!, mood!, digestion!, foodNames, mealType);
+    setSubmitted(true);
+    setTimeout(() => {
+      setEnergy(null);
+      setMood(null);
+      setDigestion(null);
+      setFoodText('');
+      setSubmitted(false);
+    }, 2000);
   };
+
+  if (submitted) {
+    return (
+      <div className="neu-flat p-6 text-center">
+        <div className="text-4xl mb-2">{'\u2705'}</div>
+        <h3 className="text-lg font-bold text-green-600">Check-in Logged!</h3>
+        <p className="text-sm text-gray-500 mt-1">Thanks for tracking how you feel.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="neu-flat p-5">
       <h3 className="text-base font-semibold text-gray-700 mb-4">
         Quick Check-In
       </h3>
+
+      {/* Meal Type Selector */}
+      <div className="mb-4">
+        <span className="text-xs font-medium text-gray-500 mb-1.5 block">
+          Meal
+        </span>
+        <div className="grid grid-cols-4 gap-2">
+          {MEAL_TYPES.map((mt) => (
+            <button
+              key={mt.type}
+              onClick={() => setMealType(mt.type)}
+              className={`py-2 rounded-xl text-center transition-all ${
+                mealType === mt.type
+                  ? 'neu-pressed text-purple-600'
+                  : 'neu-btn text-gray-500'
+              }`}
+            >
+              <div className="text-lg">{mt.emoji}</div>
+              <div className="text-[10px] font-medium mt-0.5">{mt.label}</div>
+            </button>
+          ))}
+        </div>
+      </div>
 
       <div className="space-y-4 mb-4">
         {ROWS.map((row) => (
