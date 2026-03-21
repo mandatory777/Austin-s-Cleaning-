@@ -8,14 +8,27 @@
   --neu-shadow-light: #ffffff;
 }
 
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   background: var(--neu-bg);
   color: #4b5563;
+  -webkit-text-size-adjust: 100%;
+  overscroll-behavior: none;
 }
 
-/* Smooth transitions */
-button, a, input, select {
-  transition: all 0.2s ease;
+/* Smooth transitions — only animate specific properties, not 'all' which causes 300ms mobile tap delay */
+button, a, select {
+  transition: box-shadow 0.15s ease, color 0.15s ease, background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
+  -webkit-user-select: none;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+input {
+  transition: box-shadow 0.15s ease;
 }
 
 /* Neomorphic utility classes */

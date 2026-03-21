@@ -18,7 +18,9 @@
       "Bash(for f:*)",
       "Bash(do sed:*)",
       "Bash(done)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "Bash(sed -i '' 's/min-h-screen bg-\\\\[#e0e5ec\\\\] pb-20/min-h-screen bg-[#e0e5ec] pb-28/g' src/app/journal/page.tsx src/app/recovery/page.tsx src/app/profile/page.tsx src/app/meals/shopping/page.tsx src/app/meals/page.tsx src/app/page.tsx)",
+      "Bash(sed -i '' 's/min-h-screen bg-\\\\[#e0e5ec\\\\] pb-24/min-h-screen bg-[#e0e5ec] pb-28/g' src/app/workouts/page.tsx)"
     ]
   }
 }

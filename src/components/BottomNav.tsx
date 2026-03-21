@@ -68,9 +68,6 @@ export default function BottomNav() {
   if (pathname === '/onboarding') return null;
 
   return (
-    <>
-    {/* Spacer to prevent content from being hidden behind fixed nav */}
-    <div className="h-20" />
     <nav className="fixed bottom-0 left-0 right-0 bg-[#e0e5ec] z-50" style={{ boxShadow: '0 -6px 12px #b8bec7' }}>
       <div className="flex items-center justify-around h-16 max-w-lg mx-auto">
         {tabs.map((tab) => {
@@ -96,6 +93,5 @@ export default function BottomNav() {
         })}
       </div>
     </nav>
-    </>
   );
 }

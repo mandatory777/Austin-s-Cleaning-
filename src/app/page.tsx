@@ -44,7 +44,7 @@ export default function DashboardPage() {
   const loggedFat = loggedMeals.reduce((s, m) => s + m.food.fat * m.servings, 0);
 
   return (
-    <div className="min-h-screen bg-[#e0e5ec] pb-20">
+    <div className="min-h-screen bg-[#e0e5ec] pb-28">
       <div className="max-w-lg md:max-w-2xl mx-auto px-4 pt-6 space-y-5">
         {/* Greeting */}
         <div>
