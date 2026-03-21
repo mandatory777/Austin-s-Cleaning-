@@ -16,7 +16,7 @@ import {
   calculateTDEE,
   calculateMacros,
 } from '@/lib/profile';
-import { removeStored } from '@/lib/storage';
+import { removeStored, setStored } from '@/lib/storage';
 
 export default function ProfilePage() {
   const { profile, saveProfile } = useApp();
@@ -28,8 +28,9 @@ export default function ProfilePage() {
   const [name, setName] = useState(profile?.name ?? '');
   const [age, setAge] = useState(profile?.age ?? 25);
   const [sex, setSex] = useState<Sex>(profile?.sex ?? 'female');
-  const [weight, setWeight] = useState(profile?.weight ?? 65);
-  const [height, setHeight] = useState(profile?.height ?? 165);
+  const [weight, setWeight] = useState(Math.round((profile?.weight ?? 65) * 2.205)); // stored as kg, edit as lbs
+  const [heightFeet, setHeightFeet] = useState(Math.floor(((profile?.height ?? 165) / 2.54) / 12));
+  const [heightInches, setHeightInches] = useState(Math.round(((profile?.height ?? 165) / 2.54) % 12));
   const [goal, setGoal] = useState<Goal>(profile?.goal ?? 'wellness');
   const [activityLevel, setActivityLevel] = useState<ActivityLevel>(profile?.activityLevel ?? 'moderate');
   const [fitnessExperience, setFitnessExperience] = useState<FitnessExperience>(profile?.fitnessExperience ?? 'beginner');
@@ -38,8 +39,9 @@ export default function ProfilePage() {
   const [memberName, setMemberName] = useState('');
   const [memberAge, setMemberAge] = useState(25);
   const [memberSex, setMemberSex] = useState<Sex>('female');
-  const [memberWeight, setMemberWeight] = useState(65);
-  const [memberHeight, setMemberHeight] = useState(165);
+  const [memberWeight, setMemberWeight] = useState(143);
+  const [memberHeightFeet, setMemberHeightFeet] = useState(5);
+  const [memberHeightInches, setMemberHeightInches] = useState(5);
   const [memberGoal, setMemberGoal] = useState<Goal>('wellness');
 
   if (!profile) {
@@ -50,8 +52,15 @@ export default function ProfilePage() {
     );
   }
 
+  const handleLogout = () => {
+    setStored('pulse_session', { loggedIn: false, email: '' });
+    window.location.href = '/login';
+  };
+
   const handleSave = () => {
-    const bmr = calculateBMR(sex, weight, height, age);
+    const weightKg = weight / 2.205;
+    const heightCm = (heightFeet * 12 + heightInches) * 2.54;
+    const bmr = calculateBMR(sex, weightKg, heightCm, age);
     const tdee = calculateTDEE(bmr, activityLevel);
     const macros = calculateMacros(tdee, goal);
     const updated: UserProfile = {
@@ -59,8 +68,8 @@ export default function ProfilePage() {
       name: name.trim(),
       age,
       sex,
-      weight,
-      height,
+      weight: weightKg,
+      height: heightCm,
       goal,
       activityLevel,
       fitnessExperience,
@@ -75,8 +84,9 @@ export default function ProfilePage() {
     setName(profile.name);
     setAge(profile.age);
     setSex(profile.sex);
-    setWeight(profile.weight);
-    setHeight(profile.height);
+    setWeight(Math.round(profile.weight * 2.205));
+    setHeightFeet(Math.floor((profile.height / 2.54) / 12));
+    setHeightInches(Math.round((profile.height / 2.54) % 12));
     setGoal(profile.goal);
     setActivityLevel(profile.activityLevel);
     setFitnessExperience(profile.fitnessExperience);
@@ -85,7 +95,9 @@ export default function ProfilePage() {
 
   const handleAddMember = () => {
     if (!memberName.trim()) return;
-    const bmr = calculateBMR(memberSex, memberWeight, memberHeight, memberAge);
+    const memberWeightKg = memberWeight / 2.205;
+    const memberHeightCm = (memberHeightFeet * 12 + memberHeightInches) * 2.54;
+    const bmr = calculateBMR(memberSex, memberWeightKg, memberHeightCm, memberAge);
     const tdee = calculateTDEE(bmr, 'moderate');
     const macros = calculateMacros(tdee, memberGoal);
     const member: HouseholdMember = {
@@ -93,8 +105,8 @@ export default function ProfilePage() {
       name: memberName.trim(),
       age: memberAge,
       sex: memberSex,
-      weight: memberWeight,
-      height: memberHeight,
+      weight: memberWeightKg,
+      height: memberHeightCm,
       goal: memberGoal,
       activityLevel: 'moderate',
       tdee,
@@ -108,8 +120,9 @@ export default function ProfilePage() {
     setMemberName('');
     setMemberAge(25);
     setMemberSex('female');
-    setMemberWeight(65);
-    setMemberHeight(165);
+    setMemberWeight(143);
+    setMemberHeightFeet(5);
+    setMemberHeightInches(5);
     setMemberGoal('wellness');
     setShowAddMember(false);
   };
@@ -126,7 +139,7 @@ export default function ProfilePage() {
     if (typeof window !== 'undefined') {
       const keys = Object.keys(localStorage).filter(k => k.startsWith('pulse_'));
       keys.forEach(k => removeStored(k));
-      window.location.href = '/onboarding';
+      window.location.href = '/login';
     }
   };
 
@@ -159,7 +172,7 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1">Weight (kg)</label>
+                  <label className="block text-xs text-gray-400 mb-1">Weight (lbs)</label>
                   <input
                     type="number"
                     value={weight}
@@ -168,13 +181,27 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1">Height (cm)</label>
-                  <input
-                    type="number"
-                    value={height}
-                    onChange={e => setHeight(parseFloat(e.target.value) || 0)}
-                    className="neu-input text-sm"
-                  />
+                  <label className="block text-xs text-gray-400 mb-1">Height (ft)</label>
+                  <div className="flex gap-2">
+                    <input
+                      type="number"
+                      value={heightFeet}
+                      onChange={e => setHeightFeet(parseInt(e.target.value) || 0)}
+                      min={3}
+                      max={8}
+                      className="neu-input text-sm"
+                      placeholder="ft"
+                    />
+                    <input
+                      type="number"
+                      value={heightInches}
+                      onChange={e => setHeightInches(parseInt(e.target.value) || 0)}
+                      min={0}
+                      max={11}
+                      className="neu-input text-sm"
+                      placeholder="in"
+                    />
+                  </div>
                 </div>
               </div>
               <div>
@@ -258,7 +285,7 @@ export default function ProfilePage() {
                 <div>
                   <h2 className="text-xl font-bold text-gray-700">{profile.name}</h2>
                   <p className="text-sm text-gray-500">
-                    {profile.age}y, {profile.sex === 'female' ? 'Female' : 'Male'} &middot; {profile.weight}kg &middot; {profile.height}cm
+                    {profile.age}y, {profile.sex === 'female' ? 'Female' : 'Male'} &middot; {Math.round(profile.weight * 2.205)}lbs &middot; {Math.floor((profile.height / 2.54) / 12)}&apos;{Math.round((profile.height / 2.54) % 12)}&quot;
                   </p>
                 </div>
                 <button
@@ -355,7 +382,7 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1">Weight (kg)</label>
+                  <label className="block text-xs text-gray-400 mb-1">Weight (lbs)</label>
                   <input
                     type="number"
                     value={memberWeight}
@@ -364,13 +391,27 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs text-gray-400 mb-1">Height (cm)</label>
-                  <input
-                    type="number"
-                    value={memberHeight}
-                    onChange={e => setMemberHeight(parseFloat(e.target.value) || 0)}
-                    className="neu-input text-sm"
-                  />
+                  <label className="block text-xs text-gray-400 mb-1">Height</label>
+                  <div className="flex gap-2">
+                    <input
+                      type="number"
+                      value={memberHeightFeet}
+                      onChange={e => setMemberHeightFeet(parseInt(e.target.value) || 0)}
+                      min={3}
+                      max={8}
+                      className="neu-input text-sm"
+                      placeholder="ft"
+                    />
+                    <input
+                      type="number"
+                      value={memberHeightInches}
+                      onChange={e => setMemberHeightInches(parseInt(e.target.value) || 0)}
+                      min={0}
+                      max={11}
+                      className="neu-input text-sm"
+                      placeholder="in"
+                    />
+                  </div>
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-2">
@@ -421,7 +462,7 @@ export default function ProfilePage() {
                     <div>
                       <p className="font-medium text-gray-700">{member.name}</p>
                       <p className="text-xs text-gray-500">
-                        {member.age}y, {member.sex === 'female' ? 'F' : 'M'} &middot; {member.weight}kg &middot; {GOAL_LABELS[member.goal]}
+                        {member.age}y, {member.sex === 'female' ? 'F' : 'M'} &middot; {Math.round(member.weight * 2.205)}lbs &middot; {GOAL_LABELS[member.goal]}
                       </p>
                     </div>
                     <button
@@ -458,6 +499,19 @@ export default function ProfilePage() {
             <p className="text-sm text-gray-400 text-center py-2">No household members yet</p>
           )}
         </div>
+
+        {/* Logout */}
+        <button
+          onClick={handleLogout}
+          className="neu-btn w-full py-3 text-gray-600 font-medium flex items-center justify-center gap-2"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+            <polyline points="16 17 21 12 16 7" />
+            <line x1="21" y1="12" x2="9" y2="12" />
+          </svg>
+          Log Out
+        </button>
 
         {/* Danger zone */}
         <div className="neu-flat p-5">

@@ -69,8 +69,8 @@ const tabs = [
 export default function BottomNav() {
   const pathname = usePathname();
 
-  // Hide bottom nav on onboarding page
-  if (pathname === '/onboarding') return null;
+  // Hide bottom nav on onboarding and login pages
+  if (pathname === '/onboarding' || pathname === '/login') return null;
 
   return (
     <nav className="fixed bottom-0 left-0 right-0 bg-[#e0e5ec] z-50" style={{ boxShadow: '0 -6px 12px #b8bec7' }}>

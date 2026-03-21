@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useApp } from '@/contexts/AppContext';
+import { getStored } from '@/lib/storage';
 import LifeHappensBanner from '@/components/LifeHappensBanner';
 import MacroRing from '@/components/MacroRing';
 import Link from 'next/link';
@@ -28,7 +29,10 @@ export default function DashboardPage() {
 
   useEffect(() => {
     if (loading) return; // Wait for localStorage to load first
-    if (!profile) {
+    const session = getStored<{ loggedIn: boolean } | null>('pulse_session', null);
+    if (!session?.loggedIn) {
+      router.replace('/login');
+    } else if (!profile) {
       router.replace('/onboarding');
     } else {
       updateLastActive();
