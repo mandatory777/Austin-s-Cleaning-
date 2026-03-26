@@ -14,8 +14,8 @@ export const viewport: Viewport = {
 };
 
 export const metadata: Metadata = {
-  title: "Austin's Pristine Cleaning | Professional Cleaning Services",
-  description: "Premium residential and commercial cleaning services. Trusted, thorough, and affordable. Get a free quote today!",
+  title: "Austin's Cleaning | Professional Cleaning Services",
+  description: "Professional residential and commercial cleaning services. Affordable rates, spotless results. Get a free quote today!",
 };
 
 export default function RootLayout({

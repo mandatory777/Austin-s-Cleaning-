@@ -19,20 +19,8 @@ body {
 }
 
 ::selection {
-  background: #ccfbf1;
-  color: #0f766e;
-}
-
-@layer components {
-  .section-padding {
-    @apply px-5 sm:px-8 lg:px-0 py-20 lg:py-28;
-  }
-
-  .glass-card {
-    background: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.8);
-  }
+  background: #ddd6fe;
+  color: #5b21b6;
 }
 
 /* Smooth transitions */
@@ -42,26 +30,6 @@ button, a {
 
 input, textarea, select {
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
-}
-
-/* Animated gradient background */
-.gradient-bg {
-  background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 25%, #f0fdfa 50%, #ccfbf1 75%, #e0f2fe 100%);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Sparkle pattern overlay */
-.sparkle-pattern {
-  background-image: radial-gradient(circle at 20% 50%, rgba(20, 184, 166, 0.05) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
-                    radial-gradient(circle at 50% 80%, rgba(20, 184, 166, 0.03) 0%, transparent 50%);
 }
 
 /* Hide scrollbar */
