@@ -124,6 +124,13 @@ function Hero() {
       {/* Subtle decorative shapes */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-teal-100/50 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-100/60 rounded-full blur-3xl" />
+      {/* Floating cleaning doodles */}
+      <div className="absolute top-32 right-[10%] text-4xl opacity-20 rotate-12 select-none hidden lg:block">🧴</div>
+      <div className="absolute top-52 right-[25%] text-3xl opacity-15 -rotate-6 select-none hidden lg:block">🫧</div>
+      <div className="absolute bottom-20 right-[15%] text-5xl opacity-15 rotate-6 select-none hidden lg:block">✨</div>
+      <div className="absolute top-40 right-[5%] text-3xl opacity-10 -rotate-12 select-none hidden lg:block">🧽</div>
+      <div className="absolute bottom-32 right-[30%] text-4xl opacity-15 rotate-[-20deg] select-none hidden lg:block">🧹</div>
+      <div className="absolute top-72 right-[35%] text-3xl opacity-10 rotate-[15deg] select-none hidden lg:block">🪣</div>
 
       <div className="max-w-6xl mx-auto relative">
         <div className="max-w-2xl">
@@ -165,7 +172,10 @@ function Hero() {
 
 function Services() {
   return (
-    <section id="services" className="px-5 sm:px-8 py-20 lg:py-28 bg-white">
+    <section id="services" className="relative px-5 sm:px-8 py-20 lg:py-28 bg-white overflow-hidden">
+      <div className="absolute top-10 left-[5%] text-3xl opacity-10 rotate-12 select-none hidden lg:block">🧴</div>
+      <div className="absolute bottom-16 right-[8%] text-4xl opacity-10 -rotate-12 select-none hidden lg:block">🫧</div>
+      <div className="absolute top-1/2 right-[3%] text-3xl opacity-10 rotate-6 select-none hidden lg:block">🧽</div>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">What We Do</span>
@@ -194,41 +204,12 @@ function Services() {
   );
 }
 
-function Products() {
-  const products = [
-    { emoji: '🧴', name: 'All-Purpose Cleaner', desc: 'Eco-friendly formula for every surface' },
-    { emoji: '🧽', name: 'Microfiber Cloths', desc: 'Streak-free shine on glass & counters' },
-    { emoji: '🫧', name: 'Floor Solutions', desc: 'Safe for hardwood, tile & laminate' },
-    { emoji: '🧹', name: 'HEPA Vacuums', desc: 'Captures 99.9% of dust & allergens' },
-    { emoji: '🌿', name: 'Green Products', desc: 'Non-toxic, pet & kid safe' },
-    { emoji: '✨', name: 'Disinfectants', desc: 'Hospital-grade sanitization' },
-  ];
-
-  return (
-    <section className="px-5 sm:px-8 py-16 bg-blue-50">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-10">
-          <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">What We Use</span>
-          <h2 className="mt-2 text-2xl sm:text-3xl font-extrabold text-gray-900">Professional-Grade Supplies</h2>
-          <p className="mt-3 text-gray-500 max-w-xl mx-auto">We bring our own top-quality, eco-friendly cleaning products — you don&apos;t need to supply a thing.</p>
-        </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          {products.map(p => (
-            <div key={p.name} className="bg-white rounded-xl p-4 text-center border border-gray-100 shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5">
-              <div className="text-3xl mb-2">{p.emoji}</div>
-              <div className="text-sm font-bold text-gray-900 mb-1">{p.name}</div>
-              <div className="text-xs text-gray-400 leading-tight">{p.desc}</div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Pricing() {
   return (
-    <section id="pricing" className="px-5 sm:px-8 py-20 lg:py-28 bg-gray-50">
+    <section id="pricing" className="relative px-5 sm:px-8 py-20 lg:py-28 bg-gray-50 overflow-hidden">
+      <div className="absolute top-12 right-[6%] text-4xl opacity-10 rotate-[-15deg] select-none hidden lg:block">🪣</div>
+      <div className="absolute bottom-20 left-[5%] text-3xl opacity-10 rotate-12 select-none hidden lg:block">✨</div>
+      <div className="absolute top-1/3 left-[3%] text-3xl opacity-10 -rotate-6 select-none hidden lg:block">🧹</div>
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">Pricing</span>
@@ -386,8 +367,11 @@ function QuoteForm() {
   }
 
   return (
-    <section id="quote" className="px-5 sm:px-8 py-20 lg:py-28 bg-white">
-      <div className="max-w-6xl mx-auto">
+    <section id="quote" className="relative px-5 sm:px-8 py-20 lg:py-28 bg-white overflow-hidden">
+      <div className="absolute top-16 right-[7%] text-4xl opacity-10 rotate-12 select-none hidden lg:block">🫧</div>
+      <div className="absolute bottom-10 left-[4%] text-3xl opacity-10 -rotate-6 select-none hidden lg:block">🧴</div>
+      <div className="absolute top-1/2 left-[2%] text-3xl opacity-10 rotate-[20deg] select-none hidden lg:block">✨</div>
+      <div className="max-w-6xl mx-auto relative">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
             <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">Free Quote</span>
@@ -522,7 +506,6 @@ export default function Home() {
       <Navbar />
       <Hero />
       <Services />
-      <Products />
       <Pricing />
       <About />
       <Reviews />
