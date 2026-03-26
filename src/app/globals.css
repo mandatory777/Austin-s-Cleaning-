@@ -2,268 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --neu-bg: #e0e5ec;
-  --neu-shadow-dark: #b8bec7;
-  --neu-shadow-light: #ffffff;
-}
-
 * {
   -webkit-tap-highlight-color: transparent;
+  box-sizing: border-box;
 }
 
-.scrollbar-hide {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.scrollbar-hide::-webkit-scrollbar {
-  display: none;
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--neu-bg);
-  color: #4b5563;
+  background: #ffffff;
+  color: #1e293b;
   -webkit-text-size-adjust: 100%;
   overscroll-behavior: none;
 }
 
-/* Smooth transitions — only animate specific properties, not 'all' which causes 300ms mobile tap delay */
-button, a, select {
-  transition: box-shadow 0.15s ease, color 0.15s ease, background 0.15s ease, transform 0.15s ease, opacity 0.15s ease;
-  -webkit-user-select: none;
-  user-select: none;
-  touch-action: manipulation;
+::selection {
+  background: #ccfbf1;
+  color: #0f766e;
 }
 
-input {
-  transition: box-shadow 0.15s ease;
-}
-
-/* Neomorphic utility classes */
 @layer components {
-  .neu-flat {
-    background: #e0e5ec;
-    border-radius: 1rem;
-    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
+  .section-padding {
+    @apply px-5 sm:px-8 lg:px-0 py-20 lg:py-28;
   }
 
-  .neu-pressed {
-    background: #e0e5ec;
-    border-radius: 1rem;
-    box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
-  }
-
-  .neu-btn {
-    background: #e0e5ec;
-    border-radius: 0.75rem;
-    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
-    padding: 0.625rem 1.25rem;
-    font-weight: 600;
-    color: #6b7280;
-    cursor: pointer;
-    border: none;
-  }
-
-  .neu-btn:active {
-    box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
-  }
-
-  .neu-btn-accent {
-    background: linear-gradient(145deg, #c084fc, #a78bfa);
-    color: white;
-    border-radius: 0.75rem;
-    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
-    padding: 0.625rem 1.25rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-  }
-
-  .neu-btn-accent:active {
-    box-shadow: inset 3px 3px 6px #7c3aed, inset -3px -3px 6px #c4b5fd;
-  }
-
-  .neu-btn-rose {
-    background: linear-gradient(145deg, #fb7185, #f472b6);
-    color: white;
-    border-radius: 0.75rem;
-    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
-    padding: 0.625rem 1.25rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-  }
-
-  .neu-btn-rose:active {
-    box-shadow: inset 3px 3px 6px #e11d48, inset -3px -3px 6px #fda4af;
-  }
-
-  /* Green button (meals) */
-  .neu-btn-green {
-    background: linear-gradient(145deg, #34d399, #10b981);
-    color: white;
-    border-radius: 0.75rem;
-    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
-    padding: 0.625rem 1.25rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-  }
-  .neu-btn-green:active {
-    box-shadow: inset 3px 3px 6px #059669, inset -3px -3px 6px #6ee7b7;
-  }
-
-  /* Blue button (recovery) */
-  .neu-btn-blue {
-    background: linear-gradient(145deg, #60a5fa, #3b82f6);
-    color: white;
-    border-radius: 0.75rem;
-    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
-    padding: 0.625rem 1.25rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-  }
-  .neu-btn-blue:active {
-    box-shadow: inset 3px 3px 6px #2563eb, inset -3px -3px 6px #93c5fd;
-  }
-
-  /* Amber button (journal) */
-  .neu-btn-amber {
-    background: linear-gradient(145deg, #fbbf24, #f59e0b);
-    color: white;
-    border-radius: 0.75rem;
-    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
-    padding: 0.625rem 1.25rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-  }
-  .neu-btn-amber:active {
-    box-shadow: inset 3px 3px 6px #d97706, inset -3px -3px 6px #fde68a;
-  }
-
-  .neu-input {
-    background: #e0e5ec;
-    border-radius: 0.75rem;
-    box-shadow: inset 3px 3px 6px #b8bec7, inset -3px -3px 6px #ffffff;
-    padding: 0.75rem 1rem;
-    color: #374151;
-    border: none;
-    outline: none;
-    width: 100%;
-  }
-
-  .neu-input:focus {
-    box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
-  }
-
-  .neu-input::placeholder {
-    color: #9ca3af;
-  }
-
-  .neu-badge {
-    background: #e0e5ec;
-    border-radius: 2rem;
-    box-shadow: 2px 2px 4px #b8bec7, -2px -2px 4px #ffffff;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.7rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: #6b7280;
-  }
-
-  .neu-circle {
-    background: #e0e5ec;
-    border-radius: 50%;
-    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
-  }
-
-  .neu-circle-pressed {
-    background: #e0e5ec;
-    border-radius: 50%;
-    box-shadow: inset 4px 4px 8px #b8bec7, inset -4px -4px 8px #ffffff;
-  }
-
-  /* Colored flat cards */
-  .neu-flat-rose {
-    background: linear-gradient(135deg, #e0e5ec 0%, #fce4ec 100%);
-    border-radius: 1rem;
-    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
-  }
-  .neu-flat-green {
-    background: linear-gradient(135deg, #e0e5ec 0%, #d1fae5 100%);
-    border-radius: 1rem;
-    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
-  }
-  .neu-flat-blue {
-    background: linear-gradient(135deg, #e0e5ec 0%, #dbeafe 100%);
-    border-radius: 1rem;
-    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
-  }
-  .neu-flat-amber {
-    background: linear-gradient(135deg, #e0e5ec 0%, #fef3c7 100%);
-    border-radius: 1rem;
-    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
-  }
-  .neu-flat-purple {
-    background: linear-gradient(135deg, #e0e5ec 0%, #ede9fe 100%);
-    border-radius: 1rem;
-    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
-  }
-  .neu-flat-teal {
-    background: linear-gradient(135deg, #e0e5ec 0%, #ccfbf1 100%);
-    border-radius: 1rem;
-    box-shadow: 6px 6px 12px #b8bec7, -6px -6px 12px #ffffff;
-  }
-
-  /* Teal button (running) */
-  .neu-btn-teal {
-    background: linear-gradient(145deg, #2dd4bf, #14b8a6);
-    color: white;
-    border-radius: 0.75rem;
-    box-shadow: 4px 4px 8px #b8bec7, -4px -4px 8px #ffffff;
-    padding: 0.625rem 1.25rem;
-    font-weight: 600;
-    cursor: pointer;
-    border: none;
-  }
-  .neu-btn-teal:active {
-    box-shadow: inset 3px 3px 6px #0d9488, inset -3px -3px 6px #5eead4;
+  .glass-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
   }
 }
 
-/* Custom range slider */
-input[type="range"] {
-  -webkit-appearance: none;
-  appearance: none;
-  height: 8px;
-  border-radius: 4px;
-  background: #e0e5ec;
-  box-shadow: inset 2px 2px 4px #b8bec7, inset -2px -2px 4px #ffffff;
-  outline: none;
+/* Smooth transitions */
+button, a {
+  transition: all 0.2s ease;
 }
 
-input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #c084fc, #a78bfa);
-  cursor: pointer;
-  box-shadow: 3px 3px 6px #b8bec7, -3px -3px 6px #ffffff;
+input, textarea, select {
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-input[type="range"]::-moz-range-thumb {
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  background: linear-gradient(145deg, #c084fc, #a78bfa);
-  cursor: pointer;
-  border: none;
-  box-shadow: 3px 3px 6px #b8bec7, -3px -3px 6px #ffffff;
+/* Animated gradient background */
+.gradient-bg {
+  background: linear-gradient(135deg, #f0fdfa 0%, #e0f2fe 25%, #f0fdfa 50%, #ccfbf1 75%, #e0f2fe 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Sparkle pattern overlay */
+.sparkle-pattern {
+  background-image: radial-gradient(circle at 20% 50%, rgba(20, 184, 166, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 80% 20%, rgba(14, 165, 233, 0.05) 0%, transparent 50%),
+                    radial-gradient(circle at 50% 80%, rgba(20, 184, 166, 0.03) 0%, transparent 50%);
 }
 
 /* Hide scrollbar */

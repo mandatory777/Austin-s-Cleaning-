@@ -20,7 +20,23 @@
       "Bash(done)",
       "Bash(npx next:*)",
       "Bash(sed -i '' 's/min-h-screen bg-\\\\[#e0e5ec\\\\] pb-20/min-h-screen bg-[#e0e5ec] pb-28/g' src/app/journal/page.tsx src/app/recovery/page.tsx src/app/profile/page.tsx src/app/meals/shopping/page.tsx src/app/meals/page.tsx src/app/page.tsx)",
-      "Bash(sed -i '' 's/min-h-screen bg-\\\\[#e0e5ec\\\\] pb-24/min-h-screen bg-[#e0e5ec] pb-28/g' src/app/workouts/page.tsx)"
+      "Bash(sed -i '' 's/min-h-screen bg-\\\\[#e0e5ec\\\\] pb-24/min-h-screen bg-[#e0e5ec] pb-28/g' src/app/workouts/page.tsx)",
+      "Bash(lsof -ti:3000)",
+      "WebSearch",
+      "WebFetch(domain:jobs.ashbyhq.com)",
+      "Bash(python3 /Users/amanda/Desktop/Amanda_Davis_Novig_Resume.py)",
+      "Bash(cp /tmp/Amanda_Davis_Novig_Resume.pdf \"/Users/amanda/Downloads/Amanda_Davis_Novig_Resume.pdf\")",
+      "Bash(cp /tmp/Amanda_Davis_Novig_Resume.pdf \"/Users/amanda/Documents/Amanda_Davis_Novig_Resume.pdf\")",
+      "Bash(open /tmp/Amanda_Davis_Novig_Resume.pdf)",
+      "Bash(python3 /Users/amanda/Desktop/Amanda_Davis_Novig_CoverLetter.py)",
+      "Bash(open /tmp/Amanda_Davis_Novig_CoverLetter.pdf)",
+      "Bash(python3 /Users/amanda/Desktop/Amanda_Davis_ChiliPiper_Resume.py)",
+      "Bash(open /tmp/Amanda_Davis_ChiliPiper_Resume.pdf)",
+      "WebFetch(domain:www.indexventures.com)",
+      "Bash(python3 /Users/amanda/Desktop/Amanda_Davis_Aurora_Resume.py)",
+      "Bash(open /tmp/Amanda_Davis_Aurora_Resume.pdf)",
+      "Bash(python3 /Users/amanda/Desktop/Amanda_Davis_Sagility_Resume.py)",
+      "Bash(open /tmp/Amanda_Davis_Sagility_Resume.pdf)"
     ]
   }
 }

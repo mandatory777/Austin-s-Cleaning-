@@ -1,9 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import { AppProvider } from "@/contexts/AppContext";
-import BottomNav from "@/components/BottomNav";
-import AuthGuard from "@/components/AuthGuard";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -14,13 +11,11 @@ const geistSans = localFont({
 export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
-  maximumScale: 1,
-  userScalable: false,
 };
 
 export const metadata: Metadata = {
-  title: "Pulse — Your Health & Fitness Companion",
-  description: "All-in-one health and fitness app with smart meal planning, workout tracking, recovery monitoring, and food journaling.",
+  title: "Austin's Pristine Cleaning | Professional Cleaning Services",
+  description: "Premium residential and commercial cleaning services. Trusted, thorough, and affordable. Get a free quote today!",
 };
 
 export default function RootLayout({
@@ -30,15 +25,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} font-sans antialiased`} style={{ background: '#e0e5ec', color: '#4b5563' }}>
-        <AppProvider>
-          <AuthGuard>
-            <main className="min-h-screen max-w-lg md:max-w-2xl mx-auto">
-              {children}
-            </main>
-            <BottomNav />
-          </AuthGuard>
-        </AppProvider>
+      <body className={`${geistSans.variable} font-sans antialiased`}>
+        {children}
       </body>
     </html>
   );
