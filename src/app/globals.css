@@ -31,5 +31,23 @@ input, textarea, select {
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
+/* Floating bubble animation */
+@keyframes float1 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+@keyframes float2 {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes float3 {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.05); }
+}
+
+.bubble-float-1 { animation: float1 6s ease-in-out infinite; }
+.bubble-float-2 { animation: float2 8s ease-in-out infinite; }
+.bubble-float-3 { animation: float3 7s ease-in-out infinite; }
+
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }

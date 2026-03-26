@@ -54,6 +54,28 @@ const XIcon = () => (
   </svg>
 );
 
+/* ─────────── BUBBLES ─────────── */
+function Bubbles() {
+  return (
+    <>
+      <div className="absolute top-[15%] right-[8%] w-4 h-4 rounded-full bg-blue-300/20 bubble-float-1" />
+      <div className="absolute top-[25%] right-[20%] w-7 h-7 rounded-full bg-teal-300/15 bubble-float-2" />
+      <div className="absolute top-[10%] right-[35%] w-3 h-3 rounded-full bg-blue-400/20 bubble-float-3" />
+      <div className="absolute top-[45%] right-[5%] w-5 h-5 rounded-full bg-sky-300/15 bubble-float-2" />
+      <div className="absolute top-[60%] right-[15%] w-3 h-3 rounded-full bg-teal-400/20 bubble-float-1" />
+      <div className="absolute top-[35%] right-[12%] w-6 h-6 rounded-full bg-blue-200/20 bubble-float-3" />
+      <div className="absolute bottom-[20%] right-[25%] w-4 h-4 rounded-full bg-cyan-300/15 bubble-float-1" />
+      <div className="absolute top-[20%] right-[45%] w-2 h-2 rounded-full bg-blue-300/25 bubble-float-2" />
+      <div className="absolute bottom-[30%] right-[8%] w-5 h-5 rounded-full bg-teal-200/15 bubble-float-3" />
+      <div className="absolute top-[55%] right-[30%] w-3 h-3 rounded-full bg-sky-400/15 bubble-float-1" />
+      {/* Left side - fewer */}
+      <div className="absolute top-[30%] left-[5%] w-3 h-3 rounded-full bg-blue-300/15 bubble-float-2" />
+      <div className="absolute bottom-[25%] left-[10%] w-5 h-5 rounded-full bg-teal-300/10 bubble-float-3" />
+      <div className="absolute top-[70%] left-[3%] w-2 h-2 rounded-full bg-blue-400/15 bubble-float-1" />
+    </>
+  );
+}
+
 /* ─────────── DATA ─────────── */
 const services = [
   { icon: '🏠', title: 'Standard Cleaning', desc: 'Keep your place looking fresh with a regular clean that covers all the basics — every nook and cranny!', items: ['Dusting all surfaces', 'Vacuuming & mopping', 'Kitchen & bathroom sanitization', 'Beds made', 'Trash removal'], accent: 'border-t-blue-500' },
@@ -124,22 +146,8 @@ function Hero() {
       {/* Subtle decorative shapes */}
       <div className="absolute top-20 right-0 w-96 h-96 bg-teal-100/50 rounded-full blur-3xl" />
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-blue-100/60 rounded-full blur-3xl" />
-      {/* Illustrated cleaning supplies */}
-      <div className="absolute top-28 right-[8%] hidden lg:block opacity-[0.12] rotate-12">
-        <svg width="80" height="120" viewBox="0 0 80 120" fill="none"><rect x="30" y="40" width="20" height="60" rx="4" fill="#3b82f6"/><rect x="26" y="90" width="28" height="12" rx="6" fill="#60a5fa"/><rect x="35" y="10" width="10" height="35" rx="3" fill="#93c5fd"/><circle cx="40" cy="8" r="6" fill="#93c5fd"/></svg>
-      </div>
-      <div className="absolute top-48 right-[28%] hidden lg:block opacity-[0.08] -rotate-12">
-        <svg width="100" height="100" viewBox="0 0 100 100" fill="none"><ellipse cx="50" cy="70" rx="30" ry="25" fill="#14b8a6"/><ellipse cx="50" cy="65" rx="26" ry="8" fill="#5eead4"/><rect x="46" y="20" width="8" height="40" rx="4" fill="#99f6e4"/><circle cx="50" cy="16" r="8" stroke="#5eead4" strokeWidth="3" fill="none"/></svg>
-      </div>
-      <div className="absolute bottom-24 right-[18%] hidden lg:block opacity-[0.10] rotate-6">
-        <svg width="90" height="90" viewBox="0 0 90 90" fill="none"><circle cx="45" cy="45" r="30" fill="#dbeafe"/><circle cx="35" cy="35" r="8" fill="#93c5fd" opacity="0.6"/><circle cx="55" cy="30" r="5" fill="#93c5fd" opacity="0.4"/><circle cx="50" cy="55" r="6" fill="#93c5fd" opacity="0.5"/><circle cx="30" cy="52" r="4" fill="#bfdbfe" opacity="0.7"/></svg>
-      </div>
-      <div className="absolute top-36 right-[4%] hidden lg:block opacity-[0.10] -rotate-6">
-        <svg width="70" height="50" viewBox="0 0 70 50" fill="none"><rect x="5" y="15" width="60" height="30" rx="6" fill="#fbbf24" opacity="0.7"/><rect x="10" y="10" width="50" height="10" rx="3" fill="#fcd34d" opacity="0.5"/><line x1="20" y1="25" x2="20" y2="40" stroke="#f59e0b" strokeWidth="2" opacity="0.4"/><line x1="35" y1="25" x2="35" y2="40" stroke="#f59e0b" strokeWidth="2" opacity="0.4"/><line x1="50" y1="25" x2="50" y2="40" stroke="#f59e0b" strokeWidth="2" opacity="0.4"/></svg>
-      </div>
-      <div className="absolute bottom-40 right-[35%] hidden lg:block opacity-[0.08]">
-        <svg width="60" height="100" viewBox="0 0 60 100" fill="none"><rect x="20" y="30" width="20" height="60" rx="3" fill="#a78bfa"/><rect x="15" y="80" width="30" height="12" rx="4" fill="#c4b5fd"/><rect x="27" y="5" width="6" height="30" rx="3" fill="#ddd6fe"/><path d="M10 80 L15 30 L45 30 L50 80" fill="none" stroke="#c4b5fd" strokeWidth="2" opacity="0.5"/></svg>
-      </div>
+      {/* Floating bubbles */}
+      <Bubbles />
 
       <div className="max-w-6xl mx-auto relative">
         <div className="max-w-2xl">
@@ -182,13 +190,7 @@ function Hero() {
 function Services() {
   return (
     <section id="services" className="relative px-5 sm:px-8 py-20 lg:py-28 bg-white overflow-hidden">
-      {/* Illustrated cleaning art */}
-      <div className="absolute top-10 left-[4%] hidden lg:block opacity-[0.07] rotate-12">
-        <svg width="60" height="90" viewBox="0 0 60 90" fill="none"><rect x="22" y="30" width="16" height="45" rx="3" fill="#3b82f6"/><rect x="18" y="68" width="24" height="10" rx="5" fill="#60a5fa"/><rect x="27" y="8" width="6" height="26" rx="3" fill="#93c5fd"/><circle cx="30" cy="6" r="5" fill="#93c5fd"/></svg>
-      </div>
-      <div className="absolute bottom-16 right-[6%] hidden lg:block opacity-[0.06] -rotate-12">
-        <svg width="70" height="70" viewBox="0 0 70 70" fill="none"><circle cx="35" cy="35" r="25" fill="#dbeafe"/><circle cx="28" cy="28" r="6" fill="#93c5fd" opacity="0.5"/><circle cx="42" cy="25" r="4" fill="#93c5fd" opacity="0.3"/><circle cx="38" cy="45" r="5" fill="#93c5fd" opacity="0.4"/></svg>
-      </div>
+      <Bubbles />
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">What We Do</span>
@@ -220,13 +222,7 @@ function Services() {
 function Pricing() {
   return (
     <section id="pricing" className="relative px-5 sm:px-8 py-20 lg:py-28 bg-gray-50 overflow-hidden">
-      {/* Illustrated cleaning art */}
-      <div className="absolute top-12 right-[5%] hidden lg:block opacity-[0.06] -rotate-[15deg]">
-        <svg width="70" height="80" viewBox="0 0 70 80" fill="none"><ellipse cx="35" cy="55" rx="25" ry="20" fill="#14b8a6"/><ellipse cx="35" cy="50" rx="21" ry="7" fill="#5eead4"/><rect x="31" y="15" width="8" height="32" rx="4" fill="#99f6e4"/><circle cx="35" cy="12" r="6" stroke="#5eead4" strokeWidth="2.5" fill="none"/></svg>
-      </div>
-      <div className="absolute bottom-16 left-[4%] hidden lg:block opacity-[0.06] rotate-12">
-        <svg width="50" height="80" viewBox="0 0 50 80" fill="none"><rect x="20" y="25" width="10" height="45" rx="2" fill="#a78bfa"/><rect x="16" y="65" width="18" height="8" rx="3" fill="#c4b5fd"/><rect x="23" y="5" width="4" height="24" rx="2" fill="#ddd6fe"/></svg>
-      </div>
+      <Bubbles />
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-14">
           <span className="text-blue-600 font-bold text-sm uppercase tracking-widest">Pricing</span>
@@ -385,13 +381,7 @@ function QuoteForm() {
 
   return (
     <section id="quote" className="relative px-5 sm:px-8 py-20 lg:py-28 bg-white overflow-hidden">
-      {/* Illustrated cleaning art */}
-      <div className="absolute top-16 right-[6%] hidden lg:block opacity-[0.06] rotate-12">
-        <svg width="70" height="70" viewBox="0 0 70 70" fill="none"><circle cx="35" cy="35" r="25" fill="#dbeafe"/><circle cx="28" cy="28" r="6" fill="#93c5fd" opacity="0.5"/><circle cx="45" cy="30" r="4" fill="#93c5fd" opacity="0.3"/><circle cx="38" cy="48" r="5" fill="#93c5fd" opacity="0.4"/></svg>
-      </div>
-      <div className="absolute bottom-12 left-[3%] hidden lg:block opacity-[0.06] -rotate-6">
-        <svg width="50" height="75" viewBox="0 0 50 75" fill="none"><rect x="18" y="25" width="14" height="38" rx="3" fill="#3b82f6"/><rect x="14" y="57" width="22" height="9" rx="4" fill="#60a5fa"/><rect x="22" y="6" width="6" height="22" rx="3" fill="#93c5fd"/><circle cx="25" cy="4" r="4" fill="#93c5fd"/></svg>
-      </div>
+      <Bubbles />
       <div className="max-w-6xl mx-auto relative">
         <div className="grid lg:grid-cols-5 gap-12">
           <div className="lg:col-span-2">
@@ -470,7 +460,7 @@ function Contact() {
         <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {[
             { icon: <PhoneIcon />, label: 'Call Us', value: '(662) 996-7137', href: 'tel:+16629967137', color: 'bg-blue-50 text-blue-600' },
-            { icon: <MailIcon />, label: 'Email Us', value: 'austin@austinscleaning.com', href: 'mailto:austin@austinscleaning.com', color: 'bg-teal-50 text-teal-600' },
+            { icon: <MailIcon />, label: 'Email Us', value: 'Austinscleaning4@gmail.com', href: 'mailto:Austinscleaning4@gmail.com', color: 'bg-teal-50 text-teal-600' },
             { icon: <MapPinIcon />, label: 'Service Area', value: 'Grenada, MS & Surrounding', href: undefined, color: 'bg-amber-50 text-amber-600' },
           ].map(c => (
             <div key={c.label} className="text-center bg-white rounded-xl p-6 border border-gray-100 shadow-sm hover:shadow-lg transition-all hover:-translate-y-1">
