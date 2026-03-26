@@ -501,7 +501,7 @@ function QuoteForm() {
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className={labelClass}>Phone</label>
-                  <input type="tel" value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="(662) 555-1234" className={inputClass} />
+                  <input type="tel" value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="(662) 996-7137" className={inputClass} />
                 </div>
                 <div>
                   <label className={labelClass}>Service Type *</label>
@@ -556,7 +556,7 @@ function Contact() {
         </div>
         <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {[
-            { icon: <PhoneIcon />, label: 'Call Us', value: '(662) 555-1234', href: 'tel:+16625551234', color: 'text-blue-400 bg-blue-500/10' },
+            { icon: <PhoneIcon />, label: 'Call Us', value: '(662) 996-7137', href: 'tel:+16629967137', color: 'text-blue-400 bg-blue-500/10' },
             { icon: <MailIcon />, label: 'Email Us', value: 'austin@austinscleaning.com', href: 'mailto:austin@austinscleaning.com', color: 'text-violet-400 bg-violet-500/10' },
             { icon: <MapPinIcon />, label: 'Service Area', value: 'Grenada, MS & Surrounding Areas', href: undefined, color: 'text-amber-400 bg-amber-500/10' },
           ].map(c => (
