@@ -134,9 +134,9 @@ const pricingPlans = [
 ];
 
 const testimonials = [
-  { name: 'Sarah M.', location: 'Jackson, MS', text: "Austin and his crew are the real deal! My home has never looked this good. I actually look forward to coming home after cleaning day now.", rating: 5 },
-  { name: 'James R.', location: 'Ridgeland, MS', text: "We use them for our office every other week — always on time, super friendly, and the place smells amazing after. 10/10 would recommend!", rating: 5 },
-  { name: 'Maria L.', location: 'Brandon, MS', text: "The move-out clean saved my life (and my deposit). They got every corner spotless. Already booked them for my new place!", rating: 5 },
+  { name: 'Sarah M.', location: 'Grenada, MS', text: "Austin and his crew are the real deal! My home has never looked this good. I actually look forward to coming home after cleaning day now.", rating: 5 },
+  { name: 'James R.', location: 'Greenwood, MS', text: "We use them for our office every other week — always on time, super friendly, and the place smells amazing after. 10/10 would recommend!", rating: 5 },
+  { name: 'Maria L.', location: 'Winona, MS', text: "The move-out clean saved my life (and my deposit). They got every corner spotless. Already booked them for my new place!", rating: 5 },
 ];
 
 /* ─────────── SECTIONS ─────────── */
@@ -199,7 +199,7 @@ function Hero() {
         <div className="max-w-3xl">
           <div className="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-sm font-semibold text-violet-300 mb-8">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            Serving Mississippi &bull; Jackson &bull; Ridgeland &bull; Brandon &amp; More
+            Serving Mississippi &bull; Grenada &bull; Greenwood &bull; Winona &amp; More
           </div>
           <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black text-white leading-[0.9] tracking-tight">
             We Clean.
@@ -337,7 +337,7 @@ function About() {
               <div className="text-center px-8">
                 <div className="text-8xl mb-4">🧹</div>
                 <p className="text-white font-bold text-2xl">Austin&apos;s Cleaning</p>
-                <p className="text-violet-300 text-sm mt-2">Proudly serving Mississippi</p>
+                <p className="text-violet-300 text-sm mt-2">Proudly serving Grenada, MS</p>
               </div>
             </div>
             {/* Floating cards */}
@@ -357,7 +357,7 @@ function About() {
             <span className="text-violet-400 font-bold text-sm uppercase tracking-widest">About Us</span>
             <h2 className="mt-3 text-3xl sm:text-5xl font-black text-white">Hey, I&apos;m Austin! 👋</h2>
             <p className="mt-6 text-gray-400 leading-relaxed text-lg">
-              I started Austin&apos;s Cleaning right here in Mississippi because I believe everyone deserves to come home to a clean, fresh space — without breaking the bank or lifting a finger.
+              I started Austin&apos;s Cleaning right here in Grenada, Mississippi because I believe everyone deserves to come home to a clean, fresh space — without breaking the bank or lifting a finger.
             </p>
             <p className="mt-4 text-gray-500 leading-relaxed">
               Our crew is trained, background-checked, and genuinely cares about doing a great job. We use eco-friendly products that are safe for your family and pets, and we treat every home like our own. Your space is in good hands!
@@ -501,7 +501,7 @@ function QuoteForm() {
               <div className="grid sm:grid-cols-2 gap-5">
                 <div>
                   <label className={labelClass}>Phone</label>
-                  <input type="tel" value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="(601) 555-1234" className={inputClass} />
+                  <input type="tel" value={form.phone} onChange={e => update('phone', e.target.value)} placeholder="(662) 555-1234" className={inputClass} />
                 </div>
                 <div>
                   <label className={labelClass}>Service Type *</label>
@@ -556,9 +556,9 @@ function Contact() {
         </div>
         <div className="grid sm:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {[
-            { icon: <PhoneIcon />, label: 'Call Us', value: '(601) 555-1234', href: 'tel:+16015551234', color: 'text-blue-400 bg-blue-500/10' },
+            { icon: <PhoneIcon />, label: 'Call Us', value: '(662) 555-1234', href: 'tel:+16625551234', color: 'text-blue-400 bg-blue-500/10' },
             { icon: <MailIcon />, label: 'Email Us', value: 'austin@austinscleaning.com', href: 'mailto:austin@austinscleaning.com', color: 'text-violet-400 bg-violet-500/10' },
-            { icon: <MapPinIcon />, label: 'Service Area', value: 'Jackson, MS & Surrounding Areas', href: undefined, color: 'text-amber-400 bg-amber-500/10' },
+            { icon: <MapPinIcon />, label: 'Service Area', value: 'Grenada, MS & Surrounding Areas', href: undefined, color: 'text-amber-400 bg-amber-500/10' },
           ].map(c => (
             <div key={c.label} className="text-center glass rounded-2xl p-6 hover:bg-white/10 transition-all hover:-translate-y-1">
               <div className={`w-12 h-12 rounded-full ${c.color} flex items-center justify-center mx-auto mb-4`}>
@@ -580,7 +580,7 @@ function Contact() {
         <div className="mt-16 text-center">
           <p className="text-gray-500 text-sm mb-4">Proudly serving homes and businesses across Mississippi</p>
           <div className="flex flex-wrap justify-center gap-2">
-            {['Jackson', 'Ridgeland', 'Brandon', 'Madison', 'Pearl', 'Flowood', 'Clinton', 'Terry'].map(city => (
+            {['Grenada', 'Greenwood', 'Winona', 'Carrollton', 'Duck Hill', 'Holcomb', 'Gore Springs', 'Vaiden'].map(city => (
               <span key={city} className="glass px-4 py-1.5 rounded-full text-xs text-gray-400 font-medium">
                 {city}
               </span>
@@ -610,7 +610,7 @@ function Footer() {
         </div>
         <div className="border-t border-white/5 mt-8 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-gray-600">
           <span>&copy; {new Date().getFullYear()} Austin&apos;s Cleaning. All rights reserved.</span>
-          <span>Jackson, Mississippi & Surrounding Areas</span>
+          <span>Grenada, Mississippi & Surrounding Areas</span>
         </div>
       </div>
     </footer>
