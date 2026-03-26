@@ -12,26 +12,88 @@ html {
 }
 
 body {
-  background: #ffffff;
-  color: #1e293b;
+  background: #0a0a0a;
+  color: #f1f5f9;
   -webkit-text-size-adjust: 100%;
   overscroll-behavior: none;
 }
 
 ::selection {
-  background: #ddd6fe;
-  color: #5b21b6;
+  background: #7c3aed;
+  color: #ffffff;
 }
 
-/* Smooth transitions */
 button, a {
-  transition: all 0.2s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 input, textarea, select {
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-/* Hide scrollbar */
+/* Animated gradient mesh */
+@keyframes meshMove {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(30px, -50px) scale(1.1); }
+  50% { transform: translate(-20px, 20px) scale(0.9); }
+  75% { transform: translate(50px, 30px) scale(1.05); }
+}
+
+.mesh-blob {
+  animation: meshMove 20s ease-in-out infinite;
+}
+
+.mesh-blob-2 {
+  animation: meshMove 25s ease-in-out infinite reverse;
+}
+
+.mesh-blob-3 {
+  animation: meshMove 18s ease-in-out infinite;
+  animation-delay: -5s;
+}
+
+/* Glass card */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+/* Glow effects */
+.glow-violet {
+  box-shadow: 0 0 60px rgba(139, 92, 246, 0.3), 0 0 120px rgba(139, 92, 246, 0.1);
+}
+
+.glow-blue {
+  box-shadow: 0 0 60px rgba(59, 130, 246, 0.3), 0 0 120px rgba(59, 130, 246, 0.1);
+}
+
+/* Animated gradient text */
+@keyframes gradientText {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-gradient-text {
+  background-size: 200% auto;
+  animation: gradientText 4s ease infinite;
+}
+
+/* Noise overlay */
+.noise::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
+
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
